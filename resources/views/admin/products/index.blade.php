@@ -3,7 +3,7 @@
 @section('title', 'Daftar Produk')
 
 @section('content')
-    <div class="flex items-center justify-between mb-6 bg-red-500">
+    <div class="flex items-center justify-between mb-6 ">
         <a href="{{ route('products.create') }}"
             class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition">
             + Tambah Produk

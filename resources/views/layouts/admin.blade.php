@@ -15,10 +15,21 @@
             <div>
                 <h1 class="text-xl font-bold mb-6">Admin Page</h1>
                 <nav class="space-y-4">
-                    <a href="{{ route('admin.dashboard') }}" class="block text-blue-600 font-semibold">Dashboard</a>
-                    <a href="{{ route('products.index') }}" class="block text-gray-700 hover:text-blue-500">Produk</a>
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="block {{ request()->routeIs('admin.dashboard') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
+                        Dashboard
+                    </a>
+
+                    <a href="{{ route('products.index') }}"
+                        class="block {{ request()->routeIs('products.*') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
+                        Produk
+                    </a>
+
                     <a href="{{ route('categories.index') }}"
-                        class="block text-gray-700 hover:text-blue-500">Kategori</a>
+                        class="block {{ request()->routeIs('categories.*') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
+                        Kategori
+                    </a>
+
                 </nav>
             </div>
 
