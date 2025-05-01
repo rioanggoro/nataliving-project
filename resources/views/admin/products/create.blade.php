@@ -18,6 +18,13 @@
             </div>
 
             <div class="mb-4">
+                <label class="block font-semibold mb-1">Preorder (hari)</label>
+                <input type="number" name="preorder" class="w-full border rounded px-3 py-2" placeholder="Contoh: 14"
+                    required>
+            </div>
+
+
+            <div class="mb-4">
                 <label class="block font-semibold mb-1">Kategori</label>
                 <select name="category_id" class="w-full border rounded px-3 py-2" required>
                     <option value="">-- Pilih Kategori --</option>

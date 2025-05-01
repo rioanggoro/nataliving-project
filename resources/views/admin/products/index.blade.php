@@ -29,6 +29,7 @@
                     <th class="px-5 py-3">Nama</th>
                     <th class="px-5 py-3">Kategori</th>
                     <th class="px-5 py-3">Harga</th>
+                    <th class="px-5 py-3">Preorder</th>
                     <th class="px-5 py-3">Aksi</th>
                 </tr>
             </thead>
@@ -50,8 +51,7 @@
                         <td class="px-5 py-3">{{ $product->category->name ?? '-' }}</td>
                         <td class="px-5 py-3">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                         <td class="px-5 py-3 space-x-2">
-                            <a href="{{ route('products.edit', $product->id) }}"
-                                class="text-blue-600 hover:underline">Edit</a>
+                            <a href="{{ route('products.edit') }}" class="text-blue-600 hover:underline">Edit</a>
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block"
                                 onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                                 @csrf
@@ -72,6 +72,10 @@
                         <td class="px-5 py-3">Produk Dummy</td>
                         <td class="px-5 py-3">Kategori Contoh</td>
                         <td class="px-5 py-3">Rp 99.000</td>
+                        <td class="px-5 py-3">
+                            14 hari
+                        </td>
+
                         <td class="px-5 py-3 space-x-2 text-sm">
                             <a href="{{ route('products.edit', 1) }}" class="text-blue-500 hover:underline">Edit</a>
                             <form action="{{ route('products.destroy', 1) }}" method="POST" class="inline-block"
