@@ -41,6 +41,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
             'price' => 'nullable|numeric',
+            'preorder' => 'required|numeric|min:0', // ← Tambah ini
             'images.*' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
@@ -51,6 +52,7 @@ class ProductController extends Controller
             'category_id' => $validated['category_id'],
             'description' => $validated['description'] ?? '',
             'price' => $validated['price'] ?? null,
+            'preorder' => $validated['preorder'], // ← Tambah ini
         ]);
 
         // Simpan gambar
