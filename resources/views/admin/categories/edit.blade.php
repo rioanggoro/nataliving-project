@@ -17,23 +17,6 @@
                     value="{{ old('name', $category->name) }}" required>
             </div>
 
-            {{-- Induk kategori --}}
-            <div class="mb-4">
-                <label class="block mb-1 font-medium">Induk Kategori (Opsional)</label>
-                <select name="parent_id" class="w-full border px-3 py-2 rounded">
-                    <option value="">-- Tanpa Induk --</option>
-                    @foreach ($categories as $cat)
-                        @if ($cat->id !== $category->id)
-                            {{-- Hindari memilih dirinya sendiri --}}
-                            <option value="{{ $cat->id }}"
-                                {{ old('parent_id', $category->parent_id) == $cat->id ? 'selected' : '' }}>
-                                {{ $cat->name }}
-                            </option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
-
             {{-- Tombol submit --}}
             <div class="text-right">
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">

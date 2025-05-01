@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id'
+            'parent_id' => 'nullable|exists:categories,id',
         ]);
 
         Category::create([
@@ -36,6 +36,7 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
+
 
     public function edit(Category $category)
     {

@@ -24,10 +24,9 @@
         <table class="w-full text-left text-sm">
             <thead class="bg-gray-50 border-b text-gray-700 font-semibold">
                 <tr>
-                    <th class="px-5 py-3">No</th>
+                    <th class="px-5 py-3 w-12">No</th>
                     <th class="px-5 py-3">Nama Kategori</th>
-                    <th class="px-5 py-3">Induk</th>
-                    <th class="px-5 py-3">Aksi</th>
+                    <th class="px-5 py-3 text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y">
@@ -35,8 +34,7 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-5 py-3">{{ $index + 1 }}</td>
                         <td class="px-5 py-3">{{ $category->name }}</td>
-                        <td class="px-5 py-3">{{ $category->parent?->name ?? '-' }}</td>
-                        <td class="px-5 py-3 space-x-2">
+                        <td class="px-5 py-3 text-center space-x-2">
                             <a href="{{ route('categories.edit', $category->id) }}"
                                 class="text-blue-600 hover:underline">Edit</a>
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
@@ -48,19 +46,9 @@
                         </td>
                     </tr>
                 @empty
-                    {{-- Dummy fallback --}}
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-5 py-3">1</td>
-                        <td class="px-5 py-3">Kategori Dummy</td>
-                        <td class="px-5 py-3">-</td>
-                        <td class="px-5 py-3 space-x-2 text-sm">
-                            <a href="{{ route('categories.edit', 1) }}" class="text-blue-500 hover:underline">Edit</a>
-                            <form action="{{ route('categories.destroy', 1) }}" method="POST" class="inline-block"
-                                onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:underline">Hapus</button>
-                            </form>
+                    <tr>
+                        <td colspan="3" class="text-center text-gray-500 py-4 italic">
+                            Belum ada kategori.
                         </td>
                     </tr>
                 @endforelse
