@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 12, 2)->nullable();
+            $table->unsignedInteger('preorder')->nullable()->default(0);
             $table->timestamps();
         });
     }
