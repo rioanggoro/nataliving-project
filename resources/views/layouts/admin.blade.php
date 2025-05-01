@@ -5,29 +5,52 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Admin')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
 <body class="bg-gray-50 text-gray-900">
     <div class="flex h-screen">
 
         {{-- Sidebar --}}
-        <aside class="w-64 bg-white shadow-md flex flex-col justify-between p-6">
+        <aside class="w-64 bg-gray-200 shadow-md shadow-black flex flex-col justify-between p-6">
             <div>
-                <h1 class="text-xl font-bold mb-6">Admin Page</h1>
+                <h1 class="flex items-center gap-2 text-xl font-normal mb-6 bg-blue-500 px-4 py-2 rounded-md">
+                    <i data-lucide="user" class="w-5 h-5 text-white"></i>
+                    <span class="text-white">Admin Page</span>
+                </h1>
+
+                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-500">
                 <nav class="space-y-4">
+
+                    {{-- Dashboard --}}
                     <a href="{{ route('admin.dashboard') }}"
-                        class="block {{ request()->routeIs('admin.dashboard') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
-                        Dashboard
+                        class="flex items-center gap-2 px-3 py-2 rounded-md transition 
+              {{ request()->routeIs('admin.dashboard')
+                  ? 'bg-blue-500 text-white font-semibold'
+                  : 'text-gray-700 hover:text-blue-500' }}">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        <span>Dashboard</span>
                     </a>
 
+                    {{-- Produk --}}
                     <a href="{{ route('products.index') }}"
-                        class="block {{ request()->routeIs('products.*') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
-                        Produk
+                        class="flex items-center gap-2 px-3 py-2 rounded-md transition 
+              {{ request()->routeIs('products.*')
+                  ? 'bg-blue-500 text-white font-semibold'
+                  : 'text-gray-700 hover:text-blue-500' }}">
+                        <i data-lucide="package" class="w-5 h-5"></i>
+                        <span>Produk</span>
                     </a>
 
+                    {{-- Kategori --}}
                     <a href="{{ route('categories.index') }}"
-                        class="block {{ request()->routeIs('categories.*') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-500' }}">
-                        Kategori
+                        class="flex items-center gap-2 px-3 py-2 rounded-md transition 
+              {{ request()->routeIs('categories.*')
+                  ? 'bg-blue-500 text-white font-semibold'
+                  : 'text-gray-700 hover:text-blue-500' }}">
+                        <i data-lucide="grid" class="w-5 h-5"></i>
+                        <span>Kategori</span>
                     </a>
 
                 </nav>
@@ -37,11 +60,7 @@
             <form method="POST" action="">
                 @csrf
                 <button type="submit" class="mt-8 flex items-center space-x-1 text-red-600 hover:text-red-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5" />
-                    </svg>
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
                     <span>Logout</span>
                 </button>
             </form>
@@ -58,6 +77,10 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        lucide.createIcons();
+    </script>
+
 </body>
 
 </html>
