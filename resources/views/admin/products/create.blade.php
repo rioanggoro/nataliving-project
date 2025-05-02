@@ -82,22 +82,18 @@
                     {{-- Upload --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-1">Upload Gambar</label>
-                        <input type="file" name="image"
-                            class="w-full border rounded px-3 py-2 @error('image') border-red-500 @enderror"
-                            accept="image/*">
-                        @error('image')
-                            <p class="text-red-600 text-sm mt-1">Gambar belum diunggah.</p>
+                        <input type="file" name="images[]" multiple
+                            class="w-full border rounded px-3 py-2 @error('images.*') border-red-500 @enderror"
+                            accept="image/*" id="imageInput">
+                        @error('images.*')
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- Preview Placeholder --}}
-                    <div class="flex flex-wrap gap-4 mt-2">
-                        <div class="w-32 h-32 bg-gray-100 flex items-center justify-center rounded text-gray-400">
-                            No Preview
-                        </div>
-                    </div>
+                    {{-- Preview --}}
+                    <div id="preview-container" class="flex flex-wrap gap-4 mt-2"></div>
 
-                    <p class="text-sm text-gray-500 mt-2">Hanya satu gambar akan digunakan saat ini.</p>
+                    <p class="text-sm text-gray-500 mt-2">Anda dapat mengunggah lebih dari satu gambar.</p>
                 </div>
             </div>
 
@@ -113,3 +109,32 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('imageInput');
+            const previewContainer = document.getElementById('preview-container');
+
+            input.addEventListener('change', function() {
+                previewContainer.innerHTML = '';
+                const files = Array.from(this.files);
+
+                files.forEach(file => {
+                    if (!file.type.startsWith('image/')) return;
+
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className =
+                            'w-32 h-32 object-cover rounded border shadow transition-transform transform scale-95 hover:scale-105';
+
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+        });
+    </script>
+@endpush

@@ -41,8 +41,10 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'preorder' => 'required|numeric|min:0',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
 
         $product = Product::create([
             'name' => $validated['name'],
@@ -53,14 +55,17 @@ class ProductController extends Controller
             'preorder' => $validated['preorder'],
         ]);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            ProductImage::create([
-                'product_id' => $product->id,
-                'image_url' => $path,
-                'is_main' => true,
-            ]);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $image) {
+                $path = $image->store('products', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_url' => $path,
+                    'is_main' => $index === 0, // gambar pertama sebagai utama
+                ]);
+            }
         }
+
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
