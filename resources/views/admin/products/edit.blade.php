@@ -97,8 +97,13 @@
                             <label class="block text-sm font-medium mb-1">Gambar Saat Ini</label>
                             <div class="flex flex-wrap gap-3">
                                 @foreach ($product->images as $image)
-                                    <img src="{{ asset('storage/' . $image->image_url) }}"
-                                        class="w-24 h-24 object-cover rounded border">
+                                    <div class="relative" data-id="{{ $image->id }}">
+                                        <img src="{{ asset('storage/' . $image->image_url) }}"
+                                            class="w-24 h-24 object-cover rounded border">
+                                        <button type="button"
+                                            class="absolute top-0 right-0 bg-red-600 text-white p-1 rounded-full"
+                                            onclick="markImageForDeletion({{ $image->id }}, this)">×</button>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -106,6 +111,9 @@
 
                     <p class="text-sm text-gray-500 mt-2">Jika tidak mengunggah gambar baru, gambar lama akan tetap
                         digunakan.</p>
+
+                    {{-- Hidden Input untuk Gambar yang Dihapus --}}
+                    <input type="hidden" id="deleted_images" name="deleted_images" value="">
                 </div>
             </div>
 
@@ -152,5 +160,21 @@
                 });
             });
         });
+
+        const deletedImageIds = [];
+
+        function markImageForDeletion(imageId, buttonElement) {
+            // Tambahkan ID ke list yang akan dihapus
+            if (!deletedImageIds.includes(imageId)) {
+                deletedImageIds.push(imageId);
+            }
+
+            // Sembunyikan/Remove image preview dari UI
+            const wrapper = buttonElement.closest('[data-id]');
+            if (wrapper) wrapper.remove();
+
+            // Update hidden input
+            document.getElementById('deleted_images').value = deletedImageIds.join(',');
+        }
     </script>
 @endpush
