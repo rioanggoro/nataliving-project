@@ -87,27 +87,18 @@
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-
-                    {{-- Preview Baru --}}
-                    <div id="preview-container" class="flex flex-wrap gap-3 mt-2"></div>
-
-                    {{-- Gambar Lama --}}
-                    @if ($product->images->count())
-                        <div class="mt-4">
-                            <label class="block text-sm font-medium mb-1">Gambar Saat Ini</label>
-                            <div class="flex flex-wrap gap-3">
-                                @foreach ($product->images as $image)
-                                    <div class="relative" data-id="{{ $image->id }}">
-                                        <img src="{{ asset('storage/' . $image->image_url) }}"
-                                            class="w-24 h-24 object-cover rounded border">
-                                        <button type="button"
-                                            class="absolute top-0 right-0 bg-red-600 text-white p-1 rounded-full"
-                                            onclick="markImageForDeletion({{ $image->id }}, this)">×</button>
-                                    </div>
-                                @endforeach
+                    {{-- Gambar Preview (Lama & Baru) --}}
+                    <div id="preview-container" class="flex flex-wrap gap-3 mt-2">
+                        @foreach ($product->images as $image)
+                            <div class="relative w-24 h-24 group" data-id="{{ $image->id }}" data-existing="true">
+                                <img src="{{ asset('storage/' . $image->image_url) }}"
+                                    class="w-full h-full object-cover rounded border">
+                                <button type="button" class="absolute top-0 right-0 bg-red-600 text-white p-1 rounded-full"
+                                    onclick="markImageForDeletion({{ $image->id }}, this)">×</button>
                             </div>
-                        </div>
-                    @endif
+                        @endforeach
+                    </div>
+
 
                     <p class="text-sm text-gray-500 mt-2">Jika tidak mengunggah gambar baru, gambar lama akan tetap
                         digunakan.</p>
@@ -134,47 +125,77 @@
         document.addEventListener('DOMContentLoaded', function() {
             const input = document.getElementById('imageInput');
             const previewContainer = document.getElementById('preview-container');
+            const deletedImageInput = document.getElementById('deleted_images');
+
+            let selectedFiles = [];
+            let deletedImageIds = [];
 
             input.addEventListener('change', function() {
-                previewContainer.innerHTML = '';
-                const files = Array.from(this.files);
+                const newFiles = Array.from(this.files);
 
-                if (files.length > 5) {
-                    alert('Maksimal 5 gambar yang diperbolehkan.');
-                    input.value = '';
-                    return;
-                }
+                newFiles.forEach(file => {
+                    const exists = selectedFiles.some(
+                        f => f.name === file.name && f.lastModified === file.lastModified
+                    );
 
-                files.forEach(file => {
-                    if (!file.type.startsWith('image/')) return;
+                    if (file.type.startsWith('image/') && !exists && selectedFiles.length < 5) {
+                        selectedFiles.push(file);
+                    }
+                });
 
+                this.value = '';
+                renderPreviews();
+            });
+
+            function renderPreviews() {
+                previewContainer.querySelectorAll('[data-new-preview="true"]').forEach(el => el.remove());
+
+                selectedFiles.forEach((file, index) => {
                     const reader = new FileReader();
                     reader.onload = e => {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'relative w-24 h-24 group';
+                        wrapper.setAttribute('data-new-preview', 'true');
+
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.className =
-                            'w-24 h-24 object-cover rounded border shadow transition-transform transform hover:scale-105';
-                        previewContainer.appendChild(img);
+                        img.className = 'w-full h-full object-cover rounded border';
+
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.innerHTML = '&times;';
+                        deleteBtn.className =
+                            'absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-700';
+                        deleteBtn.type = 'button';
+
+                        deleteBtn.onclick = () => {
+                            selectedFiles.splice(index, 1);
+                            renderPreviews();
+                        };
+
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(deleteBtn);
+                        previewContainer.appendChild(wrapper);
                     };
                     reader.readAsDataURL(file);
                 });
-            });
-        });
 
-        const deletedImageIds = [];
-
-        function markImageForDeletion(imageId, buttonElement) {
-            // Tambahkan ID ke list yang akan dihapus
-            if (!deletedImageIds.includes(imageId)) {
-                deletedImageIds.push(imageId);
+                // Update input files
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+                input.files = dataTransfer.files;
             }
 
-            // Sembunyikan/Remove image preview dari UI
-            const wrapper = buttonElement.closest('[data-id]');
-            if (wrapper) wrapper.remove();
+            // Fungsi untuk gambar lama (dari DB)
+            window.markImageForDeletion = function(imageId, buttonElement) {
+                if (!deletedImageIds.includes(imageId)) {
+                    deletedImageIds.push(imageId);
+                }
 
-            // Update hidden input
-            document.getElementById('deleted_images').value = deletedImageIds.join(',');
-        }
+                const wrapper = buttonElement.closest('[data-id]');
+                if (wrapper) wrapper.remove();
+
+                deletedImageInput.value = deletedImageIds.join(',');
+            };
+        });
     </script>
 @endpush
