@@ -6,7 +6,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data"
-            class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg shadow-gray-500">
+            class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
             @csrf
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -20,7 +20,7 @@
                         <input type="text" name="name" value="{{ old('name') }}"
                             class="w-full border rounded px-3 py-2 @error('name') border-red-500 @enderror">
                         @error('name')
-                            <p class="text-red-600 text-sm mt-1">Kolom ini belum diisi.</p>
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -31,7 +31,7 @@
                             class="w-full border rounded px-3 py-2 @error('preorder') border-red-500 @enderror"
                             placeholder="Contoh: 14">
                         @error('preorder')
-                            <p class="text-red-600 text-sm mt-1">Kolom ini belum diisi.</p>
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -49,7 +49,7 @@
                             @endforeach
                         </select>
                         @error('category_id')
-                            <p class="text-red-600 text-sm mt-1">Kolom ini belum diisi.</p>
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -60,7 +60,7 @@
                             class="w-full border rounded px-3 py-2 @error('price') border-red-500 @enderror"
                             placeholder="Rp">
                         @error('price')
-                            <p class="text-red-600 text-sm mt-1">Kolom ini belum diisi.</p>
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -70,7 +70,7 @@
                         <textarea name="description" rows="4"
                             class="w-full border rounded px-3 py-2 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
                         @error('description')
-                            <p class="text-red-600 text-sm mt-1">Kolom ini belum diisi.</p>
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -79,21 +79,20 @@
                 <div>
                     <h2 class="text-lg font-semibold mb-4">Gambar Produk</h2>
 
-                    {{-- Upload --}}
                     <div class="mb-4">
-                        <label class="block text-sm font-medium mb-1">Upload Gambar</label>
-                        <input type="file" name="images[]" multiple
+                        <label class="block text-sm font-medium mb-1">Upload Gambar (maks. 5)</label>
+                        <input type="file" name="images[]" multiple accept="image/*"
                             class="w-full border rounded px-3 py-2 @error('images.*') border-red-500 @enderror"
-                            accept="image/*" id="imageInput">
+                            id="imageInput">
                         @error('images.*')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     {{-- Preview --}}
-                    <div id="preview-container" class="flex flex-wrap gap-4 mt-2"></div>
+                    <div id="preview-container" class="flex flex-wrap gap-3 mt-4"></div>
 
-                    <p class="text-sm text-gray-500 mt-2">Anda dapat mengunggah lebih dari satu gambar.</p>
+                    <p class="text-sm text-gray-500 mt-2">Hanya maksimal 5 gambar yang dapat diunggah.</p>
                 </div>
             </div>
 
@@ -120,6 +119,12 @@
                 previewContainer.innerHTML = '';
                 const files = Array.from(this.files);
 
+                if (files.length > 5) {
+                    alert('Maksimal 5 gambar yang diperbolehkan.');
+                    input.value = '';
+                    return;
+                }
+
                 files.forEach(file => {
                     if (!file.type.startsWith('image/')) return;
 
@@ -128,12 +133,15 @@
                         const img = document.createElement('img');
                         img.src = e.target.result;
                         img.className =
-                            'w-32 h-32 object-cover rounded border shadow transition-transform transform scale-95 hover:scale-105';
-
+                            'w-24 h-24 object-cover rounded border shadow transition-transform transform hover:scale-105';
                         previewContainer.appendChild(img);
                     };
                     reader.readAsDataURL(file);
                 });
+            });
+
+            document.querySelector('form').addEventListener('reset', () => {
+                previewContainer.innerHTML = '';
             });
         });
     </script>

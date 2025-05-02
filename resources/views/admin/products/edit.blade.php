@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data"
-            class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg shadow-gray-500">
+            class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
             @csrf
             @method('PUT')
 
@@ -78,24 +78,34 @@
                 <div>
                     <h2 class="text-lg font-semibold mb-4">Gambar Produk</h2>
 
-                    {{-- Upload Gambar --}}
+                    {{-- Upload Baru --}}
                     <div class="mb-4">
-                        <label class="block text-sm font-medium mb-1">Upload Gambar Baru</label>
-                        <input type="file" name="image" accept="image/*"
-                            class="w-full border px-3 py-2 rounded @error('image') border-red-500 @enderror">
-                        @error('image')
+                        <label class="block text-sm font-medium mb-1">Upload Gambar Baru (maks. 5)</label>
+                        <input type="file" name="images[]" multiple accept="image/*" id="imageInput"
+                            class="w-full border rounded px-3 py-2 @error('images.*') border-red-500 @enderror">
+                        @error('images.*')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- Gambar Sebelumnya --}}
-                    @if ($product->mainImage)
+                    {{-- Preview Baru --}}
+                    <div id="preview-container" class="flex flex-wrap gap-3 mt-2"></div>
+
+                    {{-- Gambar Lama --}}
+                    @if ($product->images->count())
                         <div class="mt-4">
                             <label class="block text-sm font-medium mb-1">Gambar Saat Ini</label>
-                            <img src="{{ asset('storage/' . $product->mainImage->image_url) }}"
-                                class="w-32 h-32 object-cover rounded border" alt="Gambar Sekarang">
+                            <div class="flex flex-wrap gap-3">
+                                @foreach ($product->images as $image)
+                                    <img src="{{ asset('storage/' . $image->image_url) }}"
+                                        class="w-24 h-24 object-cover rounded border">
+                                @endforeach
+                            </div>
                         </div>
                     @endif
+
+                    <p class="text-sm text-gray-500 mt-2">Jika tidak mengunggah gambar baru, gambar lama akan tetap
+                        digunakan.</p>
                 </div>
             </div>
 
@@ -110,3 +120,37 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('imageInput');
+            const previewContainer = document.getElementById('preview-container');
+
+            input.addEventListener('change', function() {
+                previewContainer.innerHTML = '';
+                const files = Array.from(this.files);
+
+                if (files.length > 5) {
+                    alert('Maksimal 5 gambar yang diperbolehkan.');
+                    input.value = '';
+                    return;
+                }
+
+                files.forEach(file => {
+                    if (!file.type.startsWith('image/')) return;
+
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className =
+                            'w-24 h-24 object-cover rounded border shadow transition-transform transform hover:scale-105';
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+        });
+    </script>
+@endpush
