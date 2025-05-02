@@ -80,7 +80,8 @@
 
                     {{-- Upload Baru --}}
                     <div class="mb-4">
-                        <label class="block text-sm font-medium mb-1">Upload Gambar Baru (maks. 5)</label>
+                        <label class="block text-sm font-medium mb-1">Upload Gambar Baru <span
+                                class="text-red-600 font-bold">(max 5 gambar)</span></label>
                         <input type="file" name="images[]" multiple accept="image/*" id="imageInput"
                             class="w-full border rounded px-3 py-2 @error('images.*') border-red-500 @enderror">
                         @error('images.*')
@@ -98,7 +99,11 @@
                             </div>
                         @endforeach
                     </div>
-
+                    <div id="image-warning" class="text-sm text-red-600 mt-2 hidden">
+                        Ukuran gambar melebihi 2MB.
+                    </div>
+                    <div id="format-error" class="text-sm text-red-600 mt-2 hidden">Silahkan upload dengan format jpg, jpeg,
+                        png</div>
 
                     <p class="text-sm text-gray-500 mt-2">Jika tidak mengunggah gambar baru, gambar lama akan tetap
                         digunakan.</p>
@@ -132,20 +137,49 @@
 
             input.addEventListener('change', function() {
                 const newFiles = Array.from(this.files);
+                const warningText = document.getElementById('image-warning');
+                const formatError = document.getElementById('format-error');
+                let hasInvalidFile = false;
+                let hasInvalidFormat = false;
 
                 newFiles.forEach(file => {
                     const exists = selectedFiles.some(
                         f => f.name === file.name && f.lastModified === file.lastModified
                     );
+                    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
-                    if (file.type.startsWith('image/') && !exists && selectedFiles.length < 5) {
-                        selectedFiles.push(file);
+                    if (!allowedTypes.includes(file.type)) {
+                        hasInvalidFormat = true;
+                        return;
+                    }
+
+                    if (file.type.startsWith('image/')) {
+                        if (file.size > 2 * 1024 * 1024) {
+                            hasInvalidFile = true;
+                        } else if (!exists && selectedFiles.length < 5) {
+                            selectedFiles.push(file);
+                        }
                     }
                 });
 
                 this.value = '';
                 renderPreviews();
+
+                // Tampilkan atau sembunyikan peringatan
+                if (hasInvalidFile) {
+                    warningText.classList.remove('hidden');
+                } else {
+                    warningText.classList.add('hidden');
+                }
+
+                // Tampilkan atau sembunyikan pesan error
+                if (hasInvalidFormat) {
+                    formatError.classList.remove('hidden');
+                } else {
+                    formatError.classList.add('hidden');
+                }
             });
+
 
             function renderPreviews() {
                 previewContainer.querySelectorAll('[data-new-preview="true"]').forEach(el => el.remove());
