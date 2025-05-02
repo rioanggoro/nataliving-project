@@ -90,7 +90,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'preorder' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $product->update([
@@ -102,23 +102,32 @@ class ProductController extends Controller
             'preorder' => $validated['preorder'],
         ]);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-
-            // delete old image if exists
-            if ($product->mainImage) {
-                Storage::disk('public')->delete($product->mainImage->image_url);
-                $product->mainImage->delete();
+        // Hapus gambar yang ditandai oleh admin
+        if ($request->filled('deleted_images')) {
+            $imageIds = explode(',', $request->deleted_images);
+            foreach ($imageIds as $id) {
+                $image = ProductImage::where('product_id', $product->id)->where('id', $id)->first();
+                if ($image) {
+                    Storage::disk('public')->delete($image->image_url);
+                    $image->delete();
+                }
             }
+        }
 
-            $product->images()->create([
-                'image_url' => $path,
-                'is_main' => true,
-            ]);
+        // Upload gambar baru jika ada
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $path = $imageFile->store('products', 'public');
+                $product->images()->create([
+                    'image_url' => $path,
+                    'is_main' => $product->images()->count() === 0, // jika belum ada gambar, jadikan utama
+                ]);
+            }
         }
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
     }
+
 
     /**
      * Hapus produk
