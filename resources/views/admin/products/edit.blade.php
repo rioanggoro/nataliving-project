@@ -17,13 +17,6 @@
                     <input type="text" name="name" value="{{ old('name', $product->name) }}"
                         class="w-full border rounded px-3 py-2" required>
                 </div>
-
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Slug (Otomatis)</label>
-                    <input type="text" name="slug" value="{{ old('slug', $product->slug) }}"
-                        class="w-full border rounded px-3 py-2 bg-gray-100 text-gray-600" disabled>
-                </div>
-
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1">Preorder (hari)</label>
                     <input type="number" name="preorder" value="{{ old('preorder', $product->preorder) }}"
