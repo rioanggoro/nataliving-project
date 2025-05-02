@@ -40,9 +40,9 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
+            'price' => 'required|nullable|numeric',
             'preorder' => 'required|numeric|min:0', // ← Tambah ini
-            'images.*' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'images.*' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         // Simpan produk
