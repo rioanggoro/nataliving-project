@@ -51,13 +51,15 @@
                         <td class="px-5 py-3 text-center space-x-2">
                             <a href="{{ route('products.edit', $product->id) }}"
                                 class="text-blue-600 hover:underline">Edit</a>
-                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block"
-                                onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:underline">Hapus</button>
-                            </form>
+                            <!-- Tombol delete -->
+                            <button data-modal-target="popup-modal-{{ $product->id }}"
+                                data-modal-toggle="popup-modal-{{ $product->id }}"
+                                class="text-red-600 hover:text-red-800">
+                                Hapus
+                            </button>
                         </td>
+                        <x-modal.delete :id="'popup-modal-' . $product->id" :route="route('products.destroy', $product->id)"
+                            message="Yakin ingin menghapus produk '{{ $product->name }}'?" />
                     </tr>
                 @empty
                     <tr>
