@@ -102,9 +102,12 @@
                     <div id="image-warning" class="text-sm text-red-600 mt-2 hidden">
                         Ukuran gambar melebihi 2MB.
                     </div>
-                    <div id="format-error" class="text-sm text-red-600 mt-2 hidden">Silahkan upload dengan format jpg, jpeg,
-                        png</div>
-
+                    <div id="format-error" class="text-sm text-red-600 mt-2 hidden">
+                        Silakan upload gambar dengan format jpg, jpeg, atau png.
+                    </div>
+                    <div id="max-image-warning" class="text-sm text-red-600 mt-2 hidden">
+                        Maksimal 5 gambar yang dapat diunggah.
+                    </div>
                     <p class="text-sm text-gray-500 mt-2">Jika tidak mengunggah gambar baru, gambar lama akan tetap
                         digunakan.</p>
 
@@ -132,15 +135,29 @@
             const previewContainer = document.getElementById('preview-container');
             const deletedImageInput = document.getElementById('deleted_images');
 
+            const warningText = document.getElementById('image-warning');
+            const formatError = document.getElementById('format-error');
+            const maxImageWarning = document.getElementById('max-image-warning');
+
             let selectedFiles = [];
             let deletedImageIds = [];
 
             input.addEventListener('change', function() {
                 const newFiles = Array.from(this.files);
-                const warningText = document.getElementById('image-warning');
-                const formatError = document.getElementById('format-error');
                 let hasInvalidFile = false;
                 let hasInvalidFormat = false;
+
+                // Hitung jumlah total file termasuk yang baru
+                const currentTotal = selectedFiles.length + previewContainer.querySelectorAll(
+                    '[data-existing]').length;
+
+                if (currentTotal + newFiles.length > 5) {
+                    maxImageWarning.classList.remove('hidden');
+                    input.value = '';
+                    return;
+                } else {
+                    maxImageWarning.classList.add('hidden');
+                }
 
                 newFiles.forEach(file => {
                     const exists = selectedFiles.some(
@@ -153,33 +170,23 @@
                         return;
                     }
 
-                    if (file.type.startsWith('image/')) {
-                        if (file.size > 2 * 1024 * 1024) {
-                            hasInvalidFile = true;
-                        } else if (!exists && selectedFiles.length < 5) {
-                            selectedFiles.push(file);
-                        }
+                    if (file.size > 2 * 1024 * 1024) {
+                        hasInvalidFile = true;
+                        return;
+                    }
+
+                    if (!exists && selectedFiles.length < 5) {
+                        selectedFiles.push(file);
                     }
                 });
 
                 this.value = '';
                 renderPreviews();
 
-                // Tampilkan atau sembunyikan peringatan
-                if (hasInvalidFile) {
-                    warningText.classList.remove('hidden');
-                } else {
-                    warningText.classList.add('hidden');
-                }
-
-                // Tampilkan atau sembunyikan pesan error
-                if (hasInvalidFormat) {
-                    formatError.classList.remove('hidden');
-                } else {
-                    formatError.classList.add('hidden');
-                }
+                // Tampilkan/ Sembunyikan error
+                warningText.classList.toggle('hidden', !hasInvalidFile);
+                formatError.classList.toggle('hidden', !hasInvalidFormat);
             });
-
 
             function renderPreviews() {
                 previewContainer.querySelectorAll('[data-new-preview="true"]').forEach(el => el.remove());
@@ -213,13 +220,12 @@
                     reader.readAsDataURL(file);
                 });
 
-                // Update input files
                 const dataTransfer = new DataTransfer();
                 selectedFiles.forEach(file => dataTransfer.items.add(file));
                 input.files = dataTransfer.files;
             }
 
-            // Fungsi untuk gambar lama (dari DB)
+            // Fungsi hapus gambar lama (DB)
             window.markImageForDeletion = function(imageId, buttonElement) {
                 if (!deletedImageIds.includes(imageId)) {
                     deletedImageIds.push(imageId);

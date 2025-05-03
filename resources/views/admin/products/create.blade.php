@@ -95,10 +95,11 @@
                         Ukuran gambar melebihi 2MB.
                     </div>
                     <div id="format-error" class="text-sm text-red-600 mt-2 hidden">
-                        Format gambar tidak didukung. Hanya jpg, jpeg, dan png yang diperbolehkan.
+                        Silahkan upload dengan format jpg, jpeg, png.
                     </div>
-
-
+                    <div id="max-image-warning" class="text-sm text-red-600 mt-2 hidden">
+                        Maksimal 5 gambar yang dapat diunggah.
+                    </div>
                     <p class="text-sm text-gray-500 mt-2">Hanya maksimal 5 gambar yang dapat diunggah.</p>
 
                     {{-- Hidden Input untuk Gambar yang Dihapus --}}
@@ -134,10 +135,13 @@
                 let hasInvalidFormat = false;
 
                 if (currentPreviewCount + files.length > 5) {
-                    alert('Maksimal 5 gambar yang diperbolehkan.');
+                    document.getElementById('max-image-warning').classList.remove('hidden');
                     input.value = '';
                     return;
+                } else {
+                    document.getElementById('max-image-warning').classList.add('hidden');
                 }
+
 
                 // Bersihkan peringatan
                 warningText.classList.add('hidden');
