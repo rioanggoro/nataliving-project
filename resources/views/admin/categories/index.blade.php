@@ -34,16 +34,21 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-5 py-3">{{ $index + 1 }}</td>
                         <td class="px-5 py-3">{{ $category->name }}</td>
-                        <td class="px-5 py-3 text-center space-x-2">
+                        <td class="px-5 py-3 text-center space-x-4">
+                            {{-- Tombol Edit --}}
                             <a href="{{ route('categories.edit', $category->id) }}"
                                 class="text-blue-600 hover:underline">Edit</a>
-                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
-                                class="inline-block" onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:underline">Hapus</button>
-                            </form>
+
+                            {{-- Tombol Hapus (Trigger Modal) --}}
+                            <button data-modal-target="popup-modal-{{ $category->id }}"
+                                data-modal-toggle="popup-modal-{{ $category->id }}" class="text-red-600 hover:underline">
+                                Hapus
+                            </button>
+
                         </td>
+
+                        {{-- Modal Konfirmasi Hapus --}}
+                        <x-modal.delete :id="'popup-modal-' . $category->id" :route="route('categories.destroy', $category->id)" :message="'Yakin ingin menghapus kategori \'' . $category->name . '\'?'" />
                     </tr>
                 @empty
                     <tr>
