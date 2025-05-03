@@ -46,8 +46,6 @@
                             </button>
 
                         </td>
-
-                        {{-- Modal Konfirmasi Hapus --}}
                         <x-modal.delete :id="'popup-modal-' . $category->id" :route="route('categories.destroy', $category->id)" :message="'Yakin ingin menghapus kategori \'' . $category->name . '\'?'" />
                     </tr>
                 @empty
