@@ -12,10 +12,23 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                elegant: ['"Playfair Display"', "serif"],
+                modern: ['"Poppins"', "sans-serif"],
             },
             colors: {
-                "primary-color": "--color-blue-500",
+                nataliving: {
+                    // Warna utama kayu – mirip dengan amber-600
+                    wood: "#A67C52",
+
+                    // Warna coklat daun/leather – mendekati orange-800
+                    leaf: "#8B5E3C",
+
+                    // Aksen untuk heading/elegan text – serupa amber-700
+                    accent: "#9C6B41",
+
+                    // Warna lembut untuk subtext – mirip stone-400
+                    soft: "#B49B87",
+                },
             },
         },
     },
