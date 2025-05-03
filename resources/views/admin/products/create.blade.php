@@ -91,6 +91,13 @@
 
                     {{-- Preview --}}
                     <div id="preview-container" class="flex flex-wrap gap-3 mt-4"></div>
+                    <div id="image-warning" class="text-sm text-red-600 mt-2 hidden">
+                        Ukuran gambar melebihi 2MB.
+                    </div>
+                    <div id="format-error" class="text-sm text-red-600 mt-2 hidden">
+                        Format gambar tidak didukung. Hanya jpg, jpeg, dan png yang diperbolehkan.
+                    </div>
+
 
                     <p class="text-sm text-gray-500 mt-2">Hanya maksimal 5 gambar yang dapat diunggah.</p>
 
@@ -117,53 +124,76 @@
         document.addEventListener('DOMContentLoaded', function() {
             const input = document.getElementById('imageInput');
             const previewContainer = document.getElementById('preview-container');
+            const warningText = document.getElementById('image-warning');
+            const formatError = document.getElementById('format-error');
 
             input.addEventListener('change', function() {
                 const files = Array.from(this.files);
+                const currentPreviewCount = previewContainer.querySelectorAll('[data-new-preview]').length;
+                let hasInvalidFile = false;
+                let hasInvalidFormat = false;
 
-                // Mengecek jika total gambar yang dipilih (termasuk yang sebelumnya) lebih dari 5
-                const currentPreviewCount = previewContainer.children.length;
                 if (currentPreviewCount + files.length > 5) {
                     alert('Maksimal 5 gambar yang diperbolehkan.');
-                    input.value = ''; // Menghapus input untuk menghindari pemilihan file lebih dari 5
+                    input.value = '';
                     return;
                 }
 
-                // Menambahkan gambar baru ke dalam preview
+                // Bersihkan peringatan
+                warningText.classList.add('hidden');
+                formatError.classList.add('hidden');
+
                 files.forEach(file => {
-                    if (!file.type.startsWith('image/')) return; // Hanya menerima file gambar
+                    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+                    // Cek ukuran file
+                    if (file.size > 2 * 1024 * 1024) {
+                        hasInvalidFile = true;
+                        return;
+                    }
+
+                    // Cek format
+                    if (!allowedTypes.includes(file.type)) {
+                        hasInvalidFormat = true;
+                        return;
+                    }
 
                     const reader = new FileReader();
                     reader.onload = e => {
-                        const imgWrapper = document.createElement('div');
-                        imgWrapper.classList.add('relative');
-                        imgWrapper.setAttribute('data-id', Date
-                    .now()); // Assign unique ID for this image
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'relative w-24 h-24 group';
+                        wrapper.setAttribute('data-new-preview', 'true');
 
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.className =
-                            'w-24 h-24 object-cover rounded border shadow transition-transform transform hover:scale-105';
+                        img.className = 'w-full h-full object-cover rounded border';
 
-                        // Create delete button
-                        const deleteButton = document.createElement('button');
-                        deleteButton.className =
-                            'absolute top-0 right-0 bg-red-600 text-white p-1 rounded-full';
-                        deleteButton.innerHTML = '&times;';
-                        deleteButton.onclick = () => markImageForDeletion(imgWrapper);
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.innerHTML = '&times;';
+                        deleteBtn.className =
+                            'absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-700';
+                        deleteBtn.type = 'button';
+                        deleteBtn.onclick = () => wrapper.remove();
 
-                        // Add elements to the wrapper
-                        imgWrapper.appendChild(img);
-                        imgWrapper.appendChild(deleteButton);
-                        previewContainer.appendChild(imgWrapper);
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(deleteBtn);
+                        previewContainer.appendChild(wrapper);
                     };
-                    reader.readAsDataURL(file); // Membaca file gambar
+                    reader.readAsDataURL(file);
                 });
+
+                if (hasInvalidFile) {
+                    warningText.classList.remove('hidden');
+                }
+                if (hasInvalidFormat) {
+                    formatError.classList.remove('hidden');
+                }
             });
 
-            // Reset preview saat form direset
             document.querySelector('form').addEventListener('reset', () => {
-                previewContainer.innerHTML = ''; // Menghapus semua gambar yang ada di preview
+                previewContainer.innerHTML = '';
+                document.getElementById('image-warning').classList.add('hidden');
+                document.getElementById('format-error').classList.add('hidden');
             });
         });
 
