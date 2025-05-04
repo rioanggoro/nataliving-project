@@ -11,16 +11,15 @@
 
 <body class="font-sans bg-white">
     <!-- Bar Atas -->
-    <div class="bg-orange-800 text-white text-xs md:text-sm text-center py-2">
+    <div class="bg-nataliving-leaf text-white text-xs md:text-sm text-center py-2">
         Selamat Datang di Nataliving Furniture
     </div>
 
     <!-- Header -->
     <header class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 border-b">
         <!-- Logo dan Menu Sosial -->
-        <div class="flex items-center gap-4 mb-4 md:mb-0">
-            <img src="/logo-asli-kayu.png" alt="Asli Kayu" class="h-8 md:h-10" />
-        </div>
+        <img src="{{ asset('img/hero/logo_navbar.jpeg') }}" alt="Asli Kayu" class="hidden md:block md:h-14" />
+
 
         <!-- Pencarian -->
         <div class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
@@ -68,6 +67,7 @@
     </nav>
 
     @include('partials.hero')
+    @include('partials.categories')
 
 
     <script>
