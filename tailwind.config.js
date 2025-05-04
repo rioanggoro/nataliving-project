@@ -28,6 +28,7 @@ export default {
 
                     // Warna lembut untuk subtext – mirip stone-400
                     soft: "#B49B87",
+                    
                 },
             },
         },

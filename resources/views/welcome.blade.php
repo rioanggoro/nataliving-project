@@ -5,70 +5,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asli Kayu - Halaman Utama</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="font-sans bg-white">
     <!-- Bar Atas -->
-    <div class="bg-orange-800 text-white text-sm text-center py-2">
+    <div class="bg-orange-800 text-white text-xs md:text-sm text-center py-2">
         Selamat Datang di Nataliving Furniture
     </div>
 
     <!-- Header -->
-    <header class="flex items-center justify-between px-6 py-4 border-b">
+    <header class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 border-b">
         <!-- Logo dan Menu Sosial -->
-        <div class="flex items-center gap-4">
-            <img src="/logo-asli-kayu.png" alt="Asli Kayu" class="h-10" />
+        <div class="flex items-center gap-4 mb-4 md:mb-0">
+            <img src="/logo-asli-kayu.png" alt="Asli Kayu" class="h-8 md:h-10" />
         </div>
 
         <!-- Pencarian -->
-        <div class="flex-grow max-w-xl mx-6">
+        <div class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
             <input type="text" placeholder="Cari Produk" class="w-full border px-4 py-2 rounded-md" />
-        </div>
-
-        <!-- Ikon User -->
-        <div class="flex items-center gap-4 text-gray-600">
-            <span class="material-icons">person</span>
-            <span class="relative">
-                <span class="material-icons">star</span>
-                <span
-                    class="absolute -top-2 -right-2 bg-green-600 text-xs text-white rounded-full w-4 h-4 flex items-center justify-center">0</span>
-            </span>
-            <span class="relative">
-                <span class="material-icons">shopping_cart</span>
-                <span
-                    class="absolute -top-2 -right-2 bg-green-600 text-xs text-white rounded-full w-4 h-4 flex items-center justify-center">0</span>
-            </span>
         </div>
     </header>
 
-    <!-- Navigasi -->
-    <nav class="flex justify-center gap-10 text-sm font-semibold py-4 border-b">
-        <a href="#">Produk</a>
-        <a href="#">Profil</a>
-        <a href="#">Galeri</a>
-        <a href="#">Toko Kami</a>
-        <a href="#">Blog</a>
-    </nav>
+    <!-- Navigasi Mobile Sidebar -->
+    <div class="md:hidden border-b">
+        <button id="mobileMenuButton" class="flex items-center justify-between w-full py-3 px-4 text-sm font-semibold">
+            <span>Menu</span>
+            <span class="material-icons">menu</span>
+        </button>
 
-    <!-- Hero Section -->
-    <section class="relative h-[80vh] bg-cover bg-center text-white" style="background-image: url('/img-hero.jpg');">
-        <div class="absolute inset-0 bg-black/50 flex items-center px-10 md:px-20">
-            <div class="max-w-lg">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                    Kenyamanan<br />
-                    dan Keanggunan<br />
-                    Furniture Anda
-                </h1>
-                <p class="mb-6 text-sm md:text-base">
-                    Temukan berbagai furniture yang menggabungkan desain modern dengan kenyamanan tiada tara.
-                </p>
-                <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded">
-                    Dapatkan Sekarang
-                </a>
+        <!-- Sidebar menu -->
+        <div id="mobileSidebar"
+            class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+            <div class="flex items-center justify-between px-4 py-3 border-b">
+                <span class="text-lg font-semibold">Menu</span>
+                <button id="closeSidebar" class="text-gray-600">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="flex flex-col text-sm font-semibold divide-y">
+                <a href="#" class="py-3 px-4 hover:bg-gray-100">Produk</a>
+                <a href="#" class="py-3 px-4 hover:bg-gray-100">Profil</a>
+                <a href="#" class="py-3 px-4 hover:bg-gray-100">Galeri</a>
+                <a href="#" class="py-3 px-4 hover:bg-gray-100">Toko Kami</a>
+                <a href="#" class="py-3 px-4 hover:bg-gray-100">Blog</a>
             </div>
         </div>
-    </section>
+
+        <!-- Overlay -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"></div>
+    </div>
+
+
+    <!-- Navigasi Desktop -->
+    <nav class="hidden md:flex justify-center gap-10 text-sm font-semibold py-4 border-b">
+        <a href="#" class="hover:text-green-700">Produk</a>
+        <a href="#" class="hover:text-green-700">Profil</a>
+        <a href="#" class="hover:text-green-700">Galeri</a>
+        <a href="#" class="hover:text-green-700">Toko Kami</a>
+        <a href="#" class="hover:text-green-700">Blog</a>
+    </nav>
+
+    @include('partials.hero')
+
+
+    <script>
+        const sidebar = document.getElementById("mobileSidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+
+        document.getElementById("mobileMenuButton").addEventListener("click", () => {
+            sidebar.classList.remove("translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        document.getElementById("closeSidebar").addEventListener("click", () => {
+            sidebar.classList.add("translate-x-full");
+            overlay.classList.add("hidden");
+        });
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("translate-x-full");
+            overlay.classList.add("hidden");
+        });
+    </script>
 </body>
 
 </html>
