@@ -1,4 +1,4 @@
-<section class="py-14 bg-white">
+<section class="py-14 bg-white" id="product">
     <x-container>
         <div class="text-center mb-10">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Produk Terlaris Kami</h2>

@@ -69,6 +69,9 @@
     @include('partials.hero')
     @include('partials.categories')
     @include('partials.product')
+    @include('partials.whyChooseUs')
+    @include('partials.faq')
+    @include('partials.footer')
 
 
     <script>
