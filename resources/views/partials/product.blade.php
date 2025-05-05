@@ -20,6 +20,19 @@
                         </a>
                     </div>
                 </div>
+                <div class="bg-white border rounded-lg overflow-hidden shadow hover:shadow-md transition">
+                    <img src="{{ asset('img/produk/kursi-1.jpg') }}" alt="Kursi Minimalis"
+                        class="w-full h-48 object-cover" />
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 text-sm mb-1">Kursi Minimalis</h3>
+                        <p class="text-sm text-gray-500 mb-4">Rp 1.200.000</p>
+                        <a href="https://wa.me/6281234567890?text=Halo, saya tertarik dengan produk Kursi Minimalis"
+                            target="_blank"
+                            class="inline-block w-full text-center bg-nataliving-leaf text-white text-sm py-2 rounded hover:bg-amber-800 transition">
+                            Hubungi via WhatsApp
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Produk 2 -->
                 <div class="bg-white border rounded-lg overflow-hidden shadow hover:shadow-md transition">

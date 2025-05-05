@@ -15,6 +15,7 @@ use App\Http\Controllers\User\ProductController as UserProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produk/{slug}', [UserProductController::class, 'show'])->name('produk.show');
+Route::get('/produk', [UserProductController::class, 'index'])->name('produk.index');
 
 /*
 |--------------------------------------------------------------------------
