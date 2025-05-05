@@ -7,15 +7,27 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    /**
+     * Tampilkan daftar semua produk untuk pengguna
+     */
     public function index()
     {
-        $products = Product::with('category', 'images')->latest()->paginate(12);
+        $products = Product::with(['category', 'images'])
+            ->latest()
+            ->paginate(12);
+
         return view('user.products.index', compact('products'));
     }
 
+    /**
+     * Tampilkan detail satu produk berdasarkan slug
+     */
     public function show($slug)
     {
-        $product = Product::with('category', 'images')->where('slug', $slug)->firstOrFail();
+        $product = Product::with(['category', 'images'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+
         return view('user.products.show', compact('product'));
     }
 }
