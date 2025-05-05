@@ -29,7 +29,7 @@
                             <span class="font-semibold text-gray-700">Preorder:</span> {{ $product->preorder }} Hari
                         </p>
 
-                        <a href="https://wa.me/6281234567890?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }}"
+                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }}"
                             target="_blank"
                             class="inline-block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-sm py-2 rounded-md transition">
                             Hubungi via WhatsApp
