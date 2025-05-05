@@ -68,6 +68,7 @@
 
     @include('partials.hero')
     @include('partials.categories')
+    @include('partials.product')
 
 
     <script>

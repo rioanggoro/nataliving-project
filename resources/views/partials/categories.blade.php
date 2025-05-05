@@ -43,13 +43,13 @@
                     @endforeach
                 </div>
 
-                <!-- Tombol -->
+                {{-- <!-- Tombol -->
                 <div class="mt-8 text-center">
                     <a href="#"
                         class="inline-flex items-center gap-2 px-6 py-2 border text-sm font-semibold rounded hover:bg-gray-100">
                         <span class="material-icons text-base">grid_view</span> LIHAT SEMUA PRODUK
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </x-container>

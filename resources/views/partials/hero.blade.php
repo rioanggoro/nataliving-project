@@ -17,7 +17,7 @@
                         Temukan berbagai furniture yang menggabungkan desain modern dengan kenyamanan tiada tara.
                     </p>
                     <a href="#"
-                        class="inline-block bg-green-700 hover:bg-green-800 text-white font-semibold px-4 md:px-6 py-2 rounded text-sm md:text-base">
+                        class="inline-block border border-white text-white hover:bg-white hover:text-nataliving-wood font-semibold px-5 md:px-7 py-2.5 rounded transition text-sm md:text-base">
                         Dapatkan Sekarang
                     </a>
                 </div>
