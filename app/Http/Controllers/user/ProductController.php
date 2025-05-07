@@ -12,22 +12,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['category', 'images'])
-            ->latest()
-            ->paginate(12);
-
-        return view('user.products.index', compact('products'));
+        $products = Product::with(['category', 'images'])->latest()->paginate(12);
+        return view('user.shop.index', compact('products'));
     }
 
     /**
      * Tampilkan detail satu produk berdasarkan slug
-     */
-    public function show($slug)
+     */ public function show($slug)
     {
-        $product = Product::with(['category', 'images'])
-            ->where('slug', $slug)
-            ->firstOrFail();
-
-        return view('user.products.show', compact('product'));
+        $product = Product::with(['category', 'images'])->where('slug', $slug)->firstOrFail();
+        return view('user.shop.show', compact('product'));
     }
 }

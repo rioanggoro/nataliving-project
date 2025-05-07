@@ -39,18 +39,18 @@
                     <li>
                         <span class="block">WhatsApp:</span>
                         <a href="https://wa.me/6281234567890" class="hover:text-white">
-                            +62 812-3456-7890
+                            +62 811 2669 123
                         </a>
                     </li>
                     <li>
                         <span class="block">Email:</span>
                         <a href="mailto:support@nataliving.com" class="hover:text-white">
-                            support@nataliving.com
+                            admin@nataliving.co.id
                         </a>
                     </li>
                     <li>
                         <span class="block">Alamat:</span>
-                        Jl. Komplek Masnaga No. 12, Bekasi, Indonesia
+                        Sinanggul, RT 02 RW 01 Mlonggo 59452 , Jepara
                     </li>
                 </ul>
             </div>
