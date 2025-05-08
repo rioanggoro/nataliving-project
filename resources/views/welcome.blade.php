@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asli Kayu - Halaman Utama</title>
+    <title>Nataliving Furniture</title>
     @vite('resources/css/app.css')
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCFm-aSgSMEzAXrdf9horLstHHtihCOq3HpA&s"
+        rel="stylesheet">
 </head>
 
 <body class="font-sans bg-white">
@@ -18,27 +19,14 @@
     <!-- Header -->
     <header class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 border-b">
         <!-- Logo dan Menu Sosial -->
-        <img src="{{ asset('img/hero/logo_navbar.jpeg') }}" alt="Asli Kayu" class="hidden md:block md:h-14" />
-
-
         <!-- Pencarian -->
         <div class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
             <input type="text" placeholder="Cari Produk" class="w-full border px-4 py-2 rounded-md" />
         </div>
     </header>
 
-    <!-- Navigasi Mobile Sidebar -->
-
     @include('partials.mobile-nav')
-
-    <!-- Navigasi Desktop -->
-    <nav class="hidden md:flex justify-center gap-10 text-sm font-semibold py-4 border-b">
-        <a href="/shop" class="hover:text-green-700">Produk</a>
-        <a href="#" class="hover:text-green-700">Profil</a>
-        <a href="#" class="hover:text-green-700">Galeri</a>
-        <a href="#" class="hover:text-green-700">Toko Kami</a>
-    </nav>
-
+    @include('partials.desktop-nav')
     @include('partials.hero')
     @include('partials.categories')
     @include('partials.product')

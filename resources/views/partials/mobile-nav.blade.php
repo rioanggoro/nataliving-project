@@ -14,8 +14,8 @@
             </button>
         </div>
         <div class="flex flex-col text-sm font-semibold divide-y">
-            <a href="/shop" class="py-3 px-4 hover:bg-gray-100">Produk</a>
-            <a href="#" class="py-3 px-4 hover:bg-gray-100">Profil</a>
+            <a href="{{ route('shop.index') }}" class="py-3 px-4 hover:bg-gray-100">Produk</a>
+            <a href="{{ route('about') }}" class="py-3 px-4 hover:bg-gray-100">Profil</a>
             <a href="#" class="py-3 px-4 hover:bg-gray-100">Galeri</a>
             <a href="#" class="py-3 px-4 hover:bg-gray-100">Toko Kami</a>
         </div>
