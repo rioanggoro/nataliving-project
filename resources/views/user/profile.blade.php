@@ -15,11 +15,10 @@
                 </div>
             </div>
         </div>
-
         <!-- Hero Section -->
-        <div class="relative bg-gray-900 text-white">
+        <div class="relative bg-black/90 text-white">
             <div class="absolute inset-0 opacity-40">
-                <img src="{{ asset('img/placeholder.jpg') }}" alt="Workshop Nataliving" class="w-full h-full object-cover">
+                <img src="{{ asset('img/hero/bg_1.jpeg') }}" alt="Workshop Nataliving" class="w-full h-full object-cover">
             </div>
             <div class="relative container mx-auto px-4 py-20 md:py-32">
                 <div class="max-w-2xl">
@@ -35,7 +34,6 @@
                 </div>
             </div>
         </div>
-
         <!-- About Us Section -->
         <div id="tentang-kami" class="container mx-auto px-4 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -62,26 +60,24 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <img src="{{ asset('img/placeholder.jpg') }}" alt="Workshop"
+                    <img src="{{ asset('img/profile/crafting-process.jpeg') }}" alt="Crafting Process"
                         class="rounded-lg shadow-md h-64 w-full object-cover">
-                    <img src="{{ asset('img/placeholder.jpg') }}" alt="Furniture Detail"
+                    <img src="{{ asset('img/profile/furniture-detail.jpeg') }}" alt="Furniture Detail"
                         class="rounded-lg shadow-md h-64 w-full object-cover mt-8">
-                    <img src="{{ asset('img/placeholder.jpg') }}" alt="Craftsman"
+                    <img src="{{ asset('img/profile/craftsman.jpeg') }}" alt="Craftsman"
                         class="rounded-lg shadow-md h-64 w-full object-cover mt-8">
-                    <img src="{{ asset('img/placeholder.jpg') }}" alt="Finished Product"
+                    <img src="{{ asset('img/profile/finished-product.jpeg') }}" alt="Finished Product"
                         class="rounded-lg shadow-md h-64 w-full object-cover">
                 </div>
             </div>
         </div>
-
         @include('partials.vision-mission')
-
         <!-- Values -->
-        <div class="container mx-auto px-4 py-16">
+        <div class=" mx-auto px-4 py-16  bg-nataliving-leaf w-full">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="inline-block text-nataliving-leaf font-semibold mb-2">Nilai-Nilai Kami</span>
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Prinsip Yang Kami Pegang</h2>
-                <p class="text-gray-600">
+                <span class="inline-block text-white font-semibold mb-2">Nilai-Nilai Kami</span>
+                <h2 class="text-3xl font-bold text-white mb-6">Prinsip Yang Kami Pegang</h2>
+                <p class="text-white">
                     Nilai-nilai ini menjadi panduan kami dalam setiap aspek bisnis, dari pemilihan material hingga layanan
                     pelanggan.
                 </p>
@@ -133,60 +129,6 @@
                 </div>
             </div>
         </div>
-        @include('partials.timeline')
         @include('partials.team')
-        <!-- Workshop Gallery -->
-        <div class="bg-gray-100 py-16">
-            <div class="container mx-auto px-4">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="inline-block text-nataliving-leaf font-semibold mb-2">Fasilitas Kami</span>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Bengkel & Showroom</h2>
-                    <p class="text-gray-600">
-                        Lihat di mana keajaiban terjadi - dari kayu mentah hingga furniture indah yang Anda cintai.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="col-span-2 row-span-2">
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Workshop Overview"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                    <div>
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Woodworking Tools"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                    <div>
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Wood Selection"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                    <div>
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Craftsman at Work"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                    <div>
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Finishing Process"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                    <div class="col-span-2">
-                        <img src="{{ asset('img/placeholder.jpg') }}" alt="Jakarta Showroom"
-                            class="w-full h-full object-cover rounded-lg shadow-sm">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contact CTA -->
-        <div class="bg-nataliving-leaf text-white py-16">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-6">Tertarik Bekerja Sama Dengan Kami?</h2>
-                <p class="max-w-2xl mx-auto mb-8 opacity-90">
-                    Apakah Anda ingin menjadi mitra bisnis, distributor, atau memiliki pertanyaan tentang produk kami?
-                    Jangan ragu untuk menghubungi kami.
-                </p>
-                <a href="#"
-                    class="inline-block bg-white text-nataliving-leaf font-medium px-8 py-3 rounded-md hover:bg-gray-100 transition">
-                    Hubungi Kami
-                </a>
-            </div>
-        </div>
     </div>
 @endsection

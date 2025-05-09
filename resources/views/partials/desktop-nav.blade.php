@@ -4,5 +4,6 @@
         <a href="{{ route('about') }}" class="hover:text-green-700">Profil</a>
 
         <a href="#" class="hover:text-green-700">Galeri</a>
-        <a href="#" class="hover:text-green-700">Toko Kami</a>
+        <a href="{{ route('my-store') }}" class="hover:text-green-700">Toko Kami</a>
+
     </nav>

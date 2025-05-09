@@ -15,19 +15,6 @@
         Selamat Datang di Nataliving Furniture
     </div>
 
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 border-b">
-        <!-- Logo dan Menu Sosial -->
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('img/hero/logo_navbar.jpeg') }}" alt="Nataliving Furniture"
-                class="hidden md:block md:h-14" />
-        </a>
-
-        <!-- Pencarian -->
-        <div class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
-            <input type="text" placeholder="Cari Produk" class="w-full border px-4 py-2 rounded-md" />
-        </div>
-    </header>
 
     <!-- Navigasi Mobile Sidebar -->
     @include('partials.mobile-nav')

@@ -17,7 +17,7 @@
             <a href="{{ route('shop.index') }}" class="py-3 px-4 hover:bg-gray-100">Produk</a>
             <a href="{{ route('about') }}" class="py-3 px-4 hover:bg-gray-100">Profil</a>
             <a href="#" class="py-3 px-4 hover:bg-gray-100">Galeri</a>
-            <a href="#" class="py-3 px-4 hover:bg-gray-100">Toko Kami</a>
+            <a href="{{ route('my-store') }}" class="py-3 px-4 hover:bg-gray-100">Toko Kami</a>
         </div>
     </div>
 
