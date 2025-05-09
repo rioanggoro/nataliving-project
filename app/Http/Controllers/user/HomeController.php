@@ -12,4 +12,17 @@ class HomeController extends Controller
         $products = Product::with('images')->latest()->take(8)->get();
         return view('welcome', compact('products'));
     }
+
+    public function galery()
+    {
+        return view('user.galery');
+    }
+    public function about()
+    {
+        return view('user.profile');
+    }
+    public function myStore()
+    {
+        return view('user.my-store');
+    }
 }

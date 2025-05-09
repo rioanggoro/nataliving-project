@@ -5,9 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\User\HomeController;
-use App\Http\Controllers\User\MyStoreController;
 use App\Http\Controllers\User\ProductController as UserProductController;
-use App\Http\Controllers\user\PageController;
 /*
 |--------------------------------------------------------------------------
 | Halaman Depan (Public, User Tanpa Login)
@@ -17,8 +15,9 @@ use App\Http\Controllers\user\PageController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [UserProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{slug}', [UserProductController::class, 'show'])->name('shop.show');
-Route::get('/company-profile', [PageController::class, 'about'])->name('about');
-Route::get('/my-store', [MyStoreController::class, 'index'])->name('my-store');
+Route::get('/company-profile', [HomeController::class, 'about'])->name('about');
+Route::get('/my-store', [HomeController::class, 'myStore'])->name('my-store');
+Route::get('/galery', [HomeController::class, 'galery'])->name('galery');
 
 
 
