@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="bg-gray-50">
-        <!-- Page Header -->
+        {{-- <!-- Page Header -->
         <div class="bg-white border-b">
             <div class="container mx-auto px-4 py-6">
                 <div class="flex flex-wrap items-center gap-2 text-sm text-gray-500">
@@ -108,19 +108,6 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <button
-                                class="flex-1 bg-nataliving-leaf hover:bg-green-800 text-white py-3 px-6 rounded-md font-medium flex items-center justify-center gap-2 transition">
-                                <span class="material-icons">shopping_cart</span>
-                                Tambah ke Keranjang
-                            </button>
-                            <button
-                                class="flex-1 border border-nataliving-leaf text-nataliving-leaf hover:bg-green-50 py-3 px-6 rounded-md font-medium flex items-center justify-center gap-2 transition">
-                                <span class="material-icons">favorite_border</span>
-                                Simpan
-                            </button>
                         </div>
 
                         <div class="mt-6 text-sm text-gray-600">
@@ -233,5 +220,17 @@
                 });
             });
         });
-    </script>
-@endsection
+    </script> --}}
+
+        <div class="min-h-[60vh] flex items-center justify-center bg-gray-50 px-4">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-nataliving-leaf mb-4">Oops!</h1>
+                <p class="text-lg text-gray-700 mb-2">Halaman produk ini masih dalam pengembangan.</p>
+                <p class="text-gray-500 mb-6">Silakan kembali nanti atau hubungi kami untuk informasi lebih lanjut.</p>
+                <a href="{{ route('shop.index') }}"
+                    class="inline-block px-6 py-2 bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold rounded-md transition">
+                    Kembali ke Produk
+                </a>
+            </div>
+        </div>
+    @endsection

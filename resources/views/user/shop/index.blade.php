@@ -166,11 +166,11 @@
                                             class="block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-sm py-2 rounded-md transition">
                                             Hubungi via WhatsApp
                                         </a>
-
+                                        {{-- 
                                         <a href="{{ route('products.show', $product->slug) }}"
                                             class="block w-full text-center border border-nataliving-leaf text-nataliving-leaf hover:bg-nataliving-leaf hover:text-white font-semibold text-sm py-2 rounded-md transition">
                                             Lihat Detail Produk
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
 
