@@ -9,7 +9,8 @@
             @forelse ($products as $product)
                 <div
                     class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
-                    <div class="w-full h-48 overflow-hidden">
+
+                    <div class="w-full aspect-square overflow-hidden">
                         <img src="{{ asset('storage/' . ($product->images->first()->image_url ?? 'img/default.jpg')) }}"
                             alt="{{ $product->name }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />

@@ -136,8 +136,14 @@
                                 <a href="{{ route('products.show', $product->slug) }}" class="block relative">
                                     {{-- <span
                                         class="absolute top-2 left-2 bg-nataliving-leaf text-white text-xs px-2 py-1 rounded">Baru</span> --}}
-                                    <img src="{{ asset('storage/' . ($product->images->first()->image_url ?? 'img/default.jpg')) }}"
-                                        alt="{{ $product->name }}" class="w-full h-48 object-cover" />
+                                    <a href="{{ route('products.show', $product->slug) }}" class="block relative">
+                                        <div class="w-full aspect-square overflow-hidden">
+                                            <img src="{{ asset('storage/' . ($product->images->first()->image_url ?? 'img/default.jpg')) }}"
+                                                alt="{{ $product->name }}"
+                                                class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                                        </div>
+                                    </a>
+
                                 </a>
                                 <div class="p-4">
                                     <h3 class="font-semibold text-gray-800 text-base mb-1 line-clamp-1">
