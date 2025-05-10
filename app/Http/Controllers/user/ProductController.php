@@ -35,7 +35,7 @@ class ProductController extends Controller
         }
 
         // Paginate hasil produk
-        $products = $productsQuery->paginate(12);
+        $products = $productsQuery->paginate(6);
 
         return view('user.shop.index', compact(
             'products',

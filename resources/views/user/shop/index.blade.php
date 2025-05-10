@@ -10,13 +10,11 @@
                 <img src="{{ asset('img/hero/logo_navbar.jpeg') }}" alt="Nataliving Furniture"
                     class="hidden md:block md:h-14" />
             </a>
-
             <!-- Pencarian -->
             <form action="{{ route('shop.index') }}" method="GET" class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Produk"
                     class="w-full border px-4 py-2 rounded-md" />
             </form>
-
         </header>
         <!-- Page Header -->
         <div class="bg-white border-b">
@@ -40,7 +38,6 @@
                         <span class="material-icons">filter_list</span>
                     </button>
                 </div>
-
                 <!-- Sidebar Filters - Hidden on mobile by default -->
                 <div id="filterSidebar" class="hidden lg:block lg:w-1/4 space-y-6">
                     {{-- Filter Kategori --}}
@@ -80,73 +77,10 @@
                         </div>
                     </form>
                 </div>
-
-
-
-                <!-- Product Grid -->
-                <div class="lg:w-3/4">
-                    <!-- Products -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @forelse ($products as $product)
-                            <div class="bg-white rounded-lg border shadow-sm overflow-hidden hover:shadow-md transition">
-                                <div class="block relative">
-                                    <div class="w-full aspect-square overflow-hidden">
-                                        <img src="{{ asset('storage/' . ($product->images->first()->image_url ?? 'img/default.jpg')) }}"
-                                            alt="{{ $product->name }}"
-                                            class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
-                                    </div>
-                                </div>
-
-                                <div class="p-4">
-                                    <h3 class="font-semibold text-gray-800 text-base mb-1 line-clamp-1">
-                                        {{-- Jika ingin disable link sementara --}}
-                                        <span class="hover:text-nataliving-leaf-700">{{ $product->name }}</span>
-                                    </h3>
-
-                                    <p class="text-sm text-gray-500 mb-1">
-                                        <span class="font-semibold text-gray-700">Preorder:</span>
-                                        {{ $product->preorder ?? 'Tidak diketahui' }} hari
-                                    </p>
-                                    <p class="text-lg font-bold text-gray-800 mb-4">
-                                        Rp {{ number_format($product->price, 0, ',', '.') }}
-                                    </p>
-
-                                    <div class="flex flex-col gap-2">
-                                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }}"
-                                            target="_blank"
-                                            class="block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-sm py-2 rounded-md transition">
-                                            Hubungi via WhatsApp
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <p class="text-gray-500 col-span-full text-center">Belum ada produk ditambahkan.</p>
-                        @endforelse
-                    </div>
-
-
-                    <!-- Pagination -->
-                    <div class="mt-10 flex justify-center">
-                        <nav class="flex items-center space-x-1">
-                            <a href="#" class="px-3 py-2 rounded-md border text-gray-500 hover:bg-gray-50">
-                                <span class="material-icons">chevron_left</span>
-                            </a>
-                            <a href="#" class="px-4 py-2 rounded-md border bg-nataliving-leaf text-white">1</a>
-                            <a href="#" class="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-50">2</a>
-                            <a href="#" class="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-50">3</a>
-                            <a href="#" class="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-50">4</a>
-                            <a href="#" class="px-4 py-2 rounded-md border text-gray-700 hover:bg-gray-50">5</a>
-                            <a href="#" class="px-3 py-2 rounded-md border text-gray-500 hover:bg-gray-50">
-                                <span class="material-icons">chevron_right</span>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
+                @include('partials.product-grid')
             </div>
         </div>
     </div>
-
     <script>
         // Mobile filter toggle
         document.getElementById('filterToggle').addEventListener('click', function() {
