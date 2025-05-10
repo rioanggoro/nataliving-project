@@ -15,26 +15,36 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        // Ambil semua kategori dan jumlah produk di masing-masing kategori
         $categories = Category::withCount('products')->get();
 
         // Hitung total semua produk
         $totalProducts = Product::count();
 
-        // Buat array count berdasarkan slug atau nama
-        $counts = $categories->mapWithKeys(function ($cat) {
-            return [Str::slug($cat->name) => $cat->products_count];
+        // Buat array slug => jumlah produk (untuk ditampilkan di UI)
+        $counts = $categories->mapWithKeys(function ($category) {
+            return [Str::slug($category->name) => $category->products_count];
         });
 
-        $products = Product::latest();
+        // Query produk awal
+        $productsQuery = Product::latest();
 
-        if ($request->filled('category')) {
-            $products->where('category_id', $request->category);
+        // Jika user memilih filter kategori (bisa banyak)
+        if ($request->has('category') && is_array($request->category)) {
+            $productsQuery->whereIn('category_id', $request->category);
         }
 
-        $products = $products->paginate(12);
+        // Paginate hasil produk
+        $products = $productsQuery->paginate(12);
 
-        return view('user.shop.index', compact('products', 'categories', 'totalProducts', 'counts'));
+        return view('user.shop.index', compact(
+            'products',
+            'categories',
+            'totalProducts',
+            'counts'
+        ));
     }
+
 
 
 

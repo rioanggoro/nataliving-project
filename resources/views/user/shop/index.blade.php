@@ -44,46 +44,42 @@
                 <!-- Sidebar Filters - Hidden on mobile by default -->
                 <div id="filterSidebar" class="hidden lg:block lg:w-1/4 space-y-6">
                     {{-- Filter Kategori --}}
-                    <div class="bg-white p-5 rounded-lg border shadow-sm">
-                        <h3 class="font-semibold text-lg mb-4">Kategori</h3>
-                        <div class="space-y-3">
-                            @php
-                                $categoriesDisplay = collect([
-                                    [
-                                        'slug' => 'all',
-                                        'name' => 'Semua Produk',
-                                        'count' => $totalProducts ?? 0,
-                                        'checked' => true,
-                                    ],
-                                ])->merge(
-                                    $categories->map(function ($cat) {
-                                        return [
-                                            'slug' => \Illuminate\Support\Str::slug($cat->name),
-                                            'name' => $cat->name,
-                                            'count' => $cat->products_count ?? 0,
-                                            'checked' => false,
-                                        ];
-                                    }),
-                                );
-                            @endphp
-
-                            @foreach ($categoriesDisplay as $category)
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" id="cat-{{ $category['slug'] }}"
-                                            class="h-4 w-4 text-nataliving-leaf border-gray-300 rounded focus:ring-nataliving-leaf"
-                                            {{ $category['checked'] ? 'checked' : '' }}>
-                                        <label for="cat-{{ $category['slug'] }}" class="ml-2 text-gray-700">
-                                            {{ $category['name'] }}
-                                        </label>
+                    <form method="GET" action="{{ route('shop.index') }}">
+                        <div class="bg-white p-5 rounded-lg border shadow-sm">
+                            <h3 class="font-semibold text-lg mb-4">Kategori</h3>
+                            <div class="space-y-3">
+                                @foreach ($categories as $cat)
+                                    @php
+                                        $slug = \Illuminate\Support\Str::slug($cat->name);
+                                        $isChecked = in_array($cat->id, request()->get('category', []));
+                                    @endphp
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="category[]" value="{{ $cat->id }}"
+                                                id="cat-{{ $slug }}"
+                                                class="h-4 w-4 text-nataliving-leaf border-gray-300 rounded focus:ring-nataliving-leaf"
+                                                {{ $isChecked ? 'checked' : '' }}>
+                                            <label for="cat-{{ $slug }}"
+                                                class="ml-2 text-gray-700">{{ $cat->name }}</label>
+                                        </div>
+                                        <span class="text-sm text-gray-500">{{ $cat->products_count ?? 0 }} produk</span>
                                     </div>
-                                    <span class="text-sm text-gray-500">{{ $category['count'] }} produk</span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+                                @endforeach
+                            </div>
 
+                            <div class="mt-6 flex flex-col gap-3">
+                                <button type="submit"
+                                    class="w-full bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold py-2 rounded-md transition">
+                                    Terapkan Filter
+                                </button>
+                                <a href="{{ route('shop.index') }}"
+                                    class="w-full text-center border border-gray-300 text-gray-700 hover:bg-gray-100 font-medium py-2 rounded-md transition">
+                                    Reset Filter
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
 
 
