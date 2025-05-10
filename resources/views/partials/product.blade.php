@@ -6,10 +6,9 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @forelse ($products as $product)
+            @forelse ($products->take(4) as $product)
                 <div
                     class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
-
                     <div class="w-full aspect-square overflow-hidden">
                         <img src="{{ asset('storage/' . ($product->images->first()->image_url ?? 'img/default.jpg')) }}"
                             alt="{{ $product->name }}"
@@ -30,7 +29,7 @@
                             <span class="font-semibold text-gray-700">Preorder:</span> {{ $product->preorder }} Hari
                         </p>
 
-                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }}"
+                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode(url(route('products.show', $product->slug))) }}"
                             target="_blank"
                             class="inline-block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-sm py-2 rounded-md transition">
                             Hubungi via WhatsApp
@@ -41,5 +40,14 @@
                 <p class="text-gray-500 col-span-full text-center">Belum ada produk ditambahkan.</p>
             @endforelse
         </div>
+
+        @if ($products->count() > 4)
+            <div class="text-center mt-10">
+                <a href="{{ route('shop.index') }}"
+                    class="inline-block px-6 py-2 bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold rounded-md transition">
+                    Lihat Produk Lainnya
+                </a>
+            </div>
+        @endif
     </x-container>
 </section>
