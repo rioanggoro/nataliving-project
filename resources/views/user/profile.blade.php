@@ -28,7 +28,7 @@
                         keberlanjutan dalam setiap karya.
                     </p>
                     <a href="#tentang-kami"
-                        class="inline-block bg-nataliving-leaf hover:bg-green-800 text-white font-medium px-6 py-3 rounded-md transition">
+                        class="inline-block bg-nataliving-leaf hover:bg-nataliving-accent text-white font-medium px-6 py-3 rounded-md transition">
                         Pelajari Lebih Lanjut
                     </a>
                 </div>

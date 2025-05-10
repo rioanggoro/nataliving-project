@@ -100,33 +100,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- Material -->
-                    <div class="bg-white p-5 rounded-lg border shadow-sm">
-                        <h3 class="font-semibold text-lg mb-4">Material</h3>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <input id="mat-jati" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="mat-jati" class="ml-2 text-gray-700">Kayu Jati</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="mat-mahoni" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="mat-mahoni" class="ml-2 text-gray-700">Kayu Mahoni</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="mat-mindi" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="mat-mindi" class="ml-2 text-gray-700">Kayu Mindi</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="mat-sungkai" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="mat-sungkai" class="ml-2 text-gray-700">Kayu Sungkai</label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Product Grid -->
