@@ -12,9 +12,11 @@
             </a>
 
             <!-- Pencarian -->
-            <div class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
-                <input type="text" placeholder="Cari Produk" class="w-full border px-4 py-2 rounded-md" />
-            </div>
+            <form action="{{ route('shop.index') }}" method="GET" class="flex-grow w-full md:max-w-xl md:mx-6 mb-4 md:mb-0">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Produk"
+                    class="w-full border px-4 py-2 rounded-md" />
+            </form>
+
         </header>
         <!-- Page Header -->
         <div class="bg-white border-b">
