@@ -43,64 +43,49 @@
 
                 <!-- Sidebar Filters - Hidden on mobile by default -->
                 <div id="filterSidebar" class="hidden lg:block lg:w-1/4 space-y-6">
-                    <!-- Categories -->
+                    {{-- Filter Kategori --}}
                     <div class="bg-white p-5 rounded-lg border shadow-sm">
                         <h3 class="font-semibold text-lg mb-4">Kategori</h3>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <input id="cat-all" type="checkbox" checked
-                                    class="h-4 w-4 text-nataliving-leaf  rounded border-gray-300 focus:ring-nataliving-leaf">
-                                <label for="cat-all" class="ml-2 text-gray-700">Semua Produk</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="cat-sofa" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf  rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="cat-sofa" class="ml-2 text-gray-700">Sofa</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="cat-table" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="cat-table" class="ml-2 text-gray-700">Meja</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="cat-chair" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="cat-chair" class="ml-2 text-gray-700">Kursi</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="cat-bed" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="cat-bed" class="ml-2 text-gray-700">Tempat Tidur</label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="cat-cabinet" type="checkbox"
-                                    class="h-4 w-4 text-nataliving-leaf-700 rounded border-gray-300 focus:ring-nataliving-leaf-700">
-                                <label for="cat-cabinet" class="ml-2 text-gray-700">Lemari</label>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="space-y-3">
+                            @php
+                                $categoriesDisplay = collect([
+                                    [
+                                        'slug' => 'all',
+                                        'name' => 'Semua Produk',
+                                        'count' => $totalProducts ?? 0,
+                                        'checked' => true,
+                                    ],
+                                ])->merge(
+                                    $categories->map(function ($cat) {
+                                        return [
+                                            'slug' => \Illuminate\Support\Str::slug($cat->name),
+                                            'name' => $cat->name,
+                                            'count' => $cat->products_count ?? 0,
+                                            'checked' => false,
+                                        ];
+                                    }),
+                                );
+                            @endphp
 
-                    <!-- Price Range -->
-                    <div class="bg-white p-5 rounded-lg border shadow-sm">
-                        <h3 class="font-semibold text-lg mb-4">Rentang Harga</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <label for="min-price" class="block text-sm text-gray-600 mb-1">Harga Minimum</label>
-                                <input type="number" id="min-price" placeholder="Rp 0"
-                                    class="w-full border-gray-300 rounded-md focus:ring-nataliving-leaf-700 focus:border-nataliving-leaf-700">
-                            </div>
-                            <div>
-                                <label for="max-price" class="block text-sm text-gray-600 mb-1">Harga Maksimum</label>
-                                <input type="number" id="max-price" placeholder="Rp 50.000.000"
-                                    class="w-full border-gray-300 rounded-md focus:ring-nataliving-leaf-700 focus:border-nataliving-leaf-700">
-                            </div>
-                            <button
-                                class="w-full bg-nataliving-leaf hover:bg-nataliving-accent text-white py-2 rounded-md transition">
-                                Terapkan Filter
-                            </button>
+                            @foreach ($categoriesDisplay as $category)
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="cat-{{ $category['slug'] }}"
+                                            class="h-4 w-4 text-nataliving-leaf border-gray-300 rounded focus:ring-nataliving-leaf"
+                                            {{ $category['checked'] ? 'checked' : '' }}>
+                                        <label for="cat-{{ $category['slug'] }}" class="ml-2 text-gray-700">
+                                            {{ $category['name'] }}
+                                        </label>
+                                    </div>
+                                    <span class="text-sm text-gray-500">{{ $category['count'] }} produk</span>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
+
+
+
 
                 <!-- Product Grid -->
                 <div class="lg:w-3/4">
@@ -126,7 +111,6 @@
                                         <span class="font-semibold text-gray-700">Preorder:</span>
                                         {{ $product->preorder ?? 'Tidak diketahui' }} hari
                                     </p>
-
                                     <p class="text-lg font-bold text-gray-800 mb-4">
                                         Rp {{ number_format($product->price, 0, ',', '.') }}
                                     </p>

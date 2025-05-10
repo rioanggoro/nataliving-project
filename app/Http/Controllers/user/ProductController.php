@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -13,16 +15,27 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Product::query();
+        $categories = Category::withCount('products')->get();
 
-        if ($request->filled('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%');
+        // Hitung total semua produk
+        $totalProducts = Product::count();
+
+        // Buat array count berdasarkan slug atau nama
+        $counts = $categories->mapWithKeys(function ($cat) {
+            return [Str::slug($cat->name) => $cat->products_count];
+        });
+
+        $products = Product::latest();
+
+        if ($request->filled('category')) {
+            $products->where('category_id', $request->category);
         }
 
-        $products = $query->latest()->paginate(12);
+        $products = $products->paginate(12);
 
-        return view('user.shop.index', compact('products'));
+        return view('user.shop.index', compact('products', 'categories', 'totalProducts', 'counts'));
     }
+
 
 
     /**
