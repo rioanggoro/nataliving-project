@@ -34,7 +34,7 @@ class CategoryController extends Controller
             'parent_id' => $validated['parent_id'] ?? null,
         ]);
 
-        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
 
@@ -57,12 +57,12 @@ class CategoryController extends Controller
             'parent_id' => $validated['parent_id'] ?? null,
         ]);
 
-        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil diupdate.');
+        return redirect()->route('categories.index')->with('success', 'Kategori berhasil diupdate.');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

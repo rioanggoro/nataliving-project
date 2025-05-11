@@ -125,7 +125,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
 
@@ -142,6 +142,6 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
 
-        return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil dihapus.');
+        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
     }
 }
