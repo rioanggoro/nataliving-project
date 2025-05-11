@@ -4,17 +4,27 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
 {
+    /**
+     * Handle an incoming request.
+     */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            return $next($request);
+        // Cek apakah user sudah login
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.auth.login.index');
         }
 
-        abort(403, 'Unauthorized: Admin access only.');
+        // Cek apakah user memiliki role admin
+        if (Auth::guard('admin')->user()->role !== 'admin') {
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.auth.login.index')->with('error', 'Anda tidak memiliki akses admin.');
+        }
+
+        return $next($request);
     }
 }

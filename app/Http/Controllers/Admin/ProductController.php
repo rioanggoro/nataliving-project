@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category', 'images')->latest()->paginate(10);
-        return view('admin.products.index', compact('products'));
+        return view('admin.dashboard.products.index', compact('products'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.dashboard.products.create', compact('categories'));
     }
 
     /**
@@ -76,7 +76,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.dashboard.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -125,7 +125,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
 
@@ -142,6 +142,6 @@ class ProductController extends Controller
         $product->images()->delete();
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
+        return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil dihapus.');
     }
 }

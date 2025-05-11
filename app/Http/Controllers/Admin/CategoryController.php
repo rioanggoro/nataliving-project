@@ -12,13 +12,13 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.dashboard.categories.index', compact('categories'));
     }
 
     public function create()
     {
         $categories = Category::all(); // untuk parent_id
-        return view('admin.categories.create', compact('categories'));
+        return view('admin.dashboard.categories.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -34,14 +34,14 @@ class CategoryController extends Controller
             'parent_id' => $validated['parent_id'] ?? null,
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
 
     public function edit(Category $category)
     {
         $categories = Category::where('id', '!=', $category->id)->get(); // Hindari parent == diri sendiri
-        return view('admin.categories.edit', compact('category', 'categories'));
+        return view('admin.dashboard.categories.edit', compact('category', 'categories'));
     }
 
     public function update(Request $request, Category $category)
@@ -57,12 +57,12 @@ class CategoryController extends Controller
             'parent_id' => $validated['parent_id'] ?? null,
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil diupdate.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil diupdate.');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }
