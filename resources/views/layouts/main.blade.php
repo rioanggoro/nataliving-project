@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Nataliving Furniture')</title>
+    <title>Nataliving Furniture</title>
     @vite('resources/css/app.css')
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/hero/logo_navbar.jpeg') }}" type="image/jpeg">
 </head>
 
 <body class="font-sans bg-white">

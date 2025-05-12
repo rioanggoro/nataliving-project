@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nataliving Furniture</title>
     @vite('resources/css/app.css')
-    <link href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCFm-aSgSMEzAXrdf9horLstHHtihCOq3HpA&s"
-        rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/hero/logo_navbar.jpeg') }}" type="image/jpeg">
 </head>
+
 
 <body class="font-sans bg-white">
     <!-- Bar Atas -->
