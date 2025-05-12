@@ -14,11 +14,9 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <span class="text-3xl font-bold text-blue-600">500</span>
-                <span class="text-sm text-green-500 mt-1">+12% dari bulan lalu</span>
+                <span class="text-3xl font-bold text-blue-600">{{ $totalProducts }}</span>
             </div>
         </div>
-
         <!-- Card Total Kategori -->
         <div class="bg-white rounded-lg shadow p-6 flex flex-col">
             <div class="flex justify-between items-center mb-4">
@@ -28,8 +26,8 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <span class="text-3xl font-bold text-green-600">500</span>
-                <span class="text-sm text-green-500 mt-1">+5% dari bulan lalu</span>
+                <span class="text-3xl font-bold text-green-600">{{ $totalCategories }}</span>
+
             </div>
         </div>
 
@@ -56,212 +54,66 @@
                         <tr>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Gambar</th>
+                                Gambar
+                            </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Nama Produk</th>
+                                Nama Produk
+                            </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Kategori</th>
+                                Kategori
+                            </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Harga</th>
+                                Harga
+                            </th>
                             <th
                                 class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Stok</th>
-                            <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status</th>
-                            <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Aksi</th>
+                                Preorder
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Produk 1 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Sofa Minimalis 3 Seater</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-500">Sofa</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rp 5.999.000</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">45</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Aktif
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">
-                                    <i data-lucide="eye" class="h-4 w-4"></i>
-                                </a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                    <i data-lucide="edit" class="h-4 w-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Produk 2 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Meja Makan Kayu Jati</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-500">Meja</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rp 8.500.000</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">12</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Aktif
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">
-                                    <i data-lucide="eye" class="h-4 w-4"></i>
-                                </a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                    <i data-lucide="edit" class="h-4 w-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Produk 3 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Lemari Pakaian Sliding</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-500">Lemari</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rp 4.899.000</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">18</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Aktif
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">
-                                    <i data-lucide="eye" class="h-4 w-4"></i>
-                                </a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                    <i data-lucide="edit" class="h-4 w-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Produk 4 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Kursi Kantor Ergonomis</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-500">Kursi</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rp 1.299.000</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">23</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                    Terbatas
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">
-                                    <i data-lucide="eye" class="h-4 w-4"></i>
-                                </a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                    <i data-lucide="edit" class="h-4 w-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        <!-- Produk 5 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                                    <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Rak Buku Minimalis</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-500">Rak</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rp 899.000</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">56</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Aktif
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">
-                                    <i data-lucide="eye" class="h-4 w-4"></i>
-                                </a>
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                    <i data-lucide="edit" class="h-4 w-4"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        @forelse ($latestProducts as $product)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-gray-100 overflow-hidden flex items-center justify-center">
+                                        @if ($product->images->first())
+                                            <img src="{{ asset('storage/' . $product->images->first()->image_url) }}"
+                                                alt="{{ $product->name }}" class="h-10 w-10 object-cover rounded-full">
+                                        @else
+                                            <i data-lucide="image" class="h-6 w-6 text-gray-400"></i>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ $product->name }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ $product->category->name ?? '-' }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{ $product->preorder }} hari</div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-sm text-gray-500 italic">Belum ada produk.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('scripts')

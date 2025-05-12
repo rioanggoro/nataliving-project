@@ -40,11 +40,13 @@
                         {{ request()->routeIs('admin.dashboard')
                             ? 'bg-indigo-50 text-indigo-600'
                             : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
-                        <div class="{{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
-                            <i data-lucide="home" class="w-4 h-4 {{ request()->routeIs('admin.dashboard') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
+                        <div
+                            class="{{ request()->routeIs('admin.dashboard') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
+                            <i data-lucide="home"
+                                class="w-4 h-4 {{ request()->routeIs('admin.dashboard') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
                         </div>
                         <span class="font-medium">Dashboard</span>
-                        @if(request()->routeIs('admin.dashboard'))
+                        @if (request()->routeIs('admin.dashboard'))
                             <div class="ml-auto w-1.5 h-6 rounded-full bg-indigo-600"></div>
                         @endif
                     </a>
@@ -55,11 +57,13 @@
                         {{ request()->routeIs('products.*')
                             ? 'bg-indigo-50 text-indigo-600'
                             : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
-                        <div class="{{ request()->routeIs('products.*') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
-                            <i data-lucide="package" class="w-4 h-4 {{ request()->routeIs('products.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
+                        <div
+                            class="{{ request()->routeIs('products.*') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
+                            <i data-lucide="package"
+                                class="w-4 h-4 {{ request()->routeIs('products.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
                         </div>
                         <span class="font-medium">Produk</span>
-                        @if(request()->routeIs('products.*'))
+                        @if (request()->routeIs('products.*'))
                             <div class="ml-auto w-1.5 h-6 rounded-full bg-indigo-600"></div>
                         @endif
                     </a>
@@ -70,11 +74,13 @@
                         {{ request()->routeIs('categories.*')
                             ? 'bg-indigo-50 text-indigo-600'
                             : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
-                        <div class="{{ request()->routeIs('categories.*') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
-                            <i data-lucide="grid" class="w-4 h-4 {{ request()->routeIs('categories.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
+                        <div
+                            class="{{ request()->routeIs('categories.*') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
+                            <i data-lucide="grid"
+                                class="w-4 h-4 {{ request()->routeIs('categories.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
                         </div>
                         <span class="font-medium">Kategori</span>
-                        @if(request()->routeIs('categories.*'))
+                        @if (request()->routeIs('categories.*'))
                             <div class="ml-auto w-1.5 h-6 rounded-full bg-indigo-600"></div>
                         @endif
                     </a>
@@ -94,10 +100,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <form method="POST" action="{{ route('admin.auth.logout') }}">
                     @csrf
-                    <button type="submit" class="w-full flex items-center justify-center gap-2 px-3 py-2 mt-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                    <button type="submit"
+                        class="w-full flex items-center justify-center gap-2 px-3 py-2 mt-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
                         <i data-lucide="log-out" class="w-4 h-4"></i>
                         <span>Logout</span>
                     </button>
@@ -109,18 +116,6 @@
         <main class="flex-1 overflow-y-auto">
             <header class="flex justify-between items-center px-8 py-5 bg-white border-b border-gray-200">
                 <h2 class="text-xl font-bold text-gray-800">@yield('title')</h2>
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
-                        <input type="text" placeholder="Cari..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
-                    </div>
-                    <div class="relative">
-                        <button class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                            <i data-lucide="bell" class="w-5 h-5 text-gray-600"></i>
-                        </button>
-                        <div class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></div>
-                    </div>
-                </div>
             </header>
 
             <div class="p-8">
