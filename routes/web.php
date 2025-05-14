@@ -8,7 +8,12 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use Illuminate\Support\Facades\Artisan;
 
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link created successfully.';
+});
 /*
 |--------------------------------------------------------------------------
 | Halaman Depan (Public, User Tanpa Login)
