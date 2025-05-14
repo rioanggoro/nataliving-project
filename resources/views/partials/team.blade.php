@@ -45,20 +45,6 @@
                         <img src="{{ asset($member['img']) }}" alt="{{ $member['name'] }}"
                             class="w-full h-full object-cover object-top" />
                     </div>
-
-                    <div
-                        class="absolute inset-0 bg-nataliving-leaf/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="flex space-x-3">
-                            <a href="#"
-                                class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-nataliving-leaf hover:bg-gray-100">
-                                <span class="material-icons text-xl">email</span>
-                            </a>
-                            <a href="#"
-                                class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-nataliving-leaf hover:bg-gray-100">
-                                <span class="material-icons text-xl">phone</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-lg font-bold text-gray-800">{{ $member['name'] }}</h3>

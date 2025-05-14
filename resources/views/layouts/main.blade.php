@@ -7,6 +7,9 @@
     <title>Nataliving Furniture</title>
     @vite('resources/css/app.css')
     <link rel="icon" href="{{ asset('img/hero/logo_navbar.jpeg') }}" type="image/jpeg">
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body class="font-sans bg-white">
