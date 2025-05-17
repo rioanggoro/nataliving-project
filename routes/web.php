@@ -8,6 +8,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BlogController;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/storage-link', function () {
@@ -56,6 +57,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', function () {
         return view('admin.auth.login.index');
     })->name('admin.auth.login.index');
+
     Route::post('/login', [AuthController::class, 'login'])->name('admin.auth.login');
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
 
@@ -65,5 +67,6 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('/products', AdminProductController::class);
         Route::resource('/categories', AdminCategoryController::class);
+        Route::resource('/blogs', BlogController::class); // ← dipindahkan ke sini
     });
 });
