@@ -14,10 +14,10 @@
             <div>
                 <h4 class="text-lg font-semibold mb-3">Navigasi</h4>
                 <ul class="space-y-2 text-sm text-white/80">
-                    <li><a href="#" class="hover:text-white">Beranda</a></li>
-                    <li><a href="#product" class="hover:text-white">Produk</a></li>
-                    <li><a href="#" class="hover:text-white">Tentang Kami</a></li>
-                    <li><a href="#" class="hover:text-white">Kontak</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-white">Beranda</a></li>
+                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Produk</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-white">Tentang Kami</a></li>
+                    <li><a href="{{ route('my-store') }}" class="hover:text-white">Kontak</a></li>
                 </ul>
             </div>
 
@@ -25,10 +25,10 @@
             <div>
                 <h4 class="text-lg font-semibold mb-3">Kategori Populer</h4>
                 <ul class="space-y-2 text-sm text-white/80">
-                    <li><a href="#" class="hover:text-white">Sofa</a></li>
-                    <li><a href="#" class="hover:text-white">Meja TV</a></li>
-                    <li><a href="#" class="hover:text-white">Lemari Pakaian</a></li>
-                    <li><a href="#" class="hover:text-white">Meja Makan</a></li>
+                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Sofa</a></li>
+                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Meja TV</a></li>
+                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Lemari Pakaian</a></li>
+                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Meja Makan</a></li>
                 </ul>
             </div>
 

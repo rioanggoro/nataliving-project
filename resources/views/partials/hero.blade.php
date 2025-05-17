@@ -16,7 +16,7 @@
                     <p class="mb-6 text-xs md:text-sm lg:text-base">
                         Temukan berbagai furniture yang menggabungkan desain modern dengan kenyamanan tiada tara.
                     </p>
-                    <a href="#"
+                    <a href="{{ route('shop.index') }}"
                         class="inline-block border border-white text-white hover:bg-white hover:text-nataliving-wood font-semibold px-5 md:px-7 py-2.5 rounded transition text-sm md:text-base">
                         Dapatkan Sekarang
                     </a>
