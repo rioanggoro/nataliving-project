@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
 use Illuminate\Http\Request;
+use App\Models\Blog;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -16,6 +16,11 @@ class BlogController extends Controller
     }
 
     public function create()
+    /**
+     * Display a form to create a new blog post
+     *
+     * @return \Illuminate\View\View
+     */
     {
         return view('admin.blogs.create');
     }
