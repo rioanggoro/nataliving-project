@@ -11,7 +11,7 @@ class Blog extends Model
         'title',
         'slug',
         'content',
-        'thumbnail', // jika pakai gambar
+        'thumbnail',
     ];
 
     protected static function booted()

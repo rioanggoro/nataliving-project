@@ -38,7 +38,6 @@
                         file:bg-indigo-50 file:text-indigo-700
                         hover:file:bg-indigo-100" />
             </div>
-
             {{-- Konten --}}
             <div class="mb-4">
                 <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Isi Konten</label>
