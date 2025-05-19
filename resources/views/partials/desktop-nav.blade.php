@@ -4,4 +4,5 @@
         <a href="{{ route('about') }}" class="hover:text-nataliving-leaf">Profil</a>
         <a href="{{ route('galery') }}" class="hover:text-nataliving-leaf">Galeri</a>
         <a href="{{ route('my-store') }}" class="hover:text-nataliving-leaf">Toko Kami</a>
+        <a href="# class="hover:text-nataliving-leaf">Blog</a>
     </nav>
