@@ -2,6 +2,10 @@
 
 @section('title', 'Edit Blog')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+@endpush
+
 @section('content')
     <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-sm">
         <h1 class="text-2xl font-bold text-gray-800 mb-6">✏️ Edit Blog</h1>
@@ -18,7 +22,7 @@
         @endif
 
         {{-- Form --}}
-        <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form id="editBlogForm" action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -40,14 +44,14 @@
                         file:rounded-md file:border-0
                         file:text-sm file:font-semibold
                         file:bg-indigo-50 file:text-indigo-700
-                        hover:file:bg-indigo-100" />
+                        hover:file:bg-indigo-100" 
+                    onchange="previewImage()" />
 
-                @if ($blog->thumbnail)
-                    <div class="mt-2">
-                        <p class="text-sm text-gray-600">Gambar saat ini:</p>
-                        <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="Thumbnail" class="h-32 mt-1 rounded">
-                    </div>
-                @endif
+                <div class="mt-2">
+                    <p class="text-sm text-gray-600">Gambar saat ini:</p>
+                    <img id="thumbnail-preview" src="{{ $blog->thumbnail ? asset('storage/' . $blog->thumbnail) : '' }}" 
+                        alt="Thumbnail" class="h-32 mt-1 rounded {{ $blog->thumbnail ? '' : 'hidden' }}">
+                </div>
             </div>
 
             {{-- Konten --}}
@@ -72,3 +76,66 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Form submission dengan SweetAlert2
+        document.getElementById('editBlogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            Swal.fire({
+                title: 'Update Blog?',
+                text: "Pastikan semua perubahan sudah benar",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#4F46E5',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Update!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Menyimpan...',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Submit form
+                    this.submit();
+                }
+            });
+        });
+
+        // Tampilkan SweetAlert2 jika ada session success
+        @if(session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#4F46E5'
+            });
+        @endif
+
+        function previewImage() {
+            const input = document.getElementById('thumbnail');
+            const preview = document.getElementById('thumbnail-preview');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endpush

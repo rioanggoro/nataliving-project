@@ -29,7 +29,7 @@
             <a href="{{ route('about') }}" class="py-3 px-4 hover:bg-gray-100">Profil</a>
             <a href="{{ route('galery') }}" class="py-3 px-4 hover:bg-gray-100">Galeri</a>
             <a href="{{ route('my-store') }}" class="py-3 px-4 hover:bg-gray-100">Toko Kami</a>
-            <a href="#" class="py-3 px-4 hover:bg-gray-100">Blog</a>
+            <a href="{{ route('blog.index') }}" class="py-3 px-4 hover:bg-gray-100">Blog</a>
         </div>
     </div>
 

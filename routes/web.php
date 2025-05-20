@@ -28,6 +28,10 @@ Route::get('/company-profile', [HomeController::class, 'about'])->name('about');
 Route::get('/my-store', [HomeController::class, 'myStore'])->name('my-store');
 Route::get('/galery', [HomeController::class, 'galery'])->name('galery');
 
+// Blog Routes
+Route::get('/blog', [HomeController::class, 'blogIndex'])->name('blog.index');
+Route::get('/blog/{slug}', [HomeController::class, 'blogShow'])->name('blog.show');
+
 // Route login untuk redirect ke login admin
 Route::get('/login', function () {
     return redirect()->route('admin.auth.login.index', ['auth' => 'required']);
@@ -67,6 +71,9 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('/products', AdminProductController::class);
         Route::resource('/categories', AdminCategoryController::class);
-        Route::resource('/blogs', BlogController::class); // ← dipindahkan ke sini
+        Route::resource('/blogs', BlogController::class);
+        
+        // Route untuk upload gambar Trix Editor
+        Route::post('/upload-trix-image', [BlogController::class, 'uploadTrixImage'])->name('trix.upload');
     });
 });
