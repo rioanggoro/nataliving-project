@@ -181,7 +181,7 @@
                         <div
                             class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                             <div class="relative">
-                                <a href="{{ route('products.show', $item->id) }}">
+                                <a href="{{ route('shop.show', $item->slug) }}">
                                     <img src="{{ $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('img/placeholder.jpg') }}"
                                         alt="{{ $item->name }}" class="w-full h-48 object-cover">
                                 </a>
@@ -196,16 +196,6 @@
                                         {{ $item->name }}
                                     </a>
                                 </h3>
-                                <div class="flex items-center mb-2">
-                                    <div class="flex text-yellow-400">
-                                        @for ($j = 1; $j <= 5; $j++)
-                                            <span class="material-icons text-xs">
-                                                {{ $j <= 4 ? 'star' : 'star_border' }}
-                                            </span>
-                                        @endfor
-                                    </div>
-                                    <span class="text-xs text-gray-500 ml-1">(18)</span>
-                                </div>
                                 <div class="font-bold text-gray-800">
                                     Rp {{ number_format($item->price, 0, ',', '.') }}
                                 </div>
@@ -214,7 +204,6 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
 
         <!-- Image Zoom Modal -->
