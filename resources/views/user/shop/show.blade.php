@@ -177,12 +177,14 @@
             <div class="mt-12">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Produk Terkait</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @for ($i = 1; $i <= 4; $i++)
+                    @foreach ($relatedProducts as $item)
                         <div
                             class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                             <div class="relative">
-                                <img src="{{ asset('img/placeholder.jpg') }}" alt="Produk Terkait {{ $i }}"
-                                    class="w-full h-48 object-cover">
+                                <a href="{{ route('products.show', $item->id) }}">
+                                    <img src="{{ $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('img/placeholder.jpg') }}"
+                                        alt="{{ $item->name }}" class="w-full h-48 object-cover">
+                                </a>
                                 <button
                                     class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transition">
                                     <span class="material-icons text-gray-600 text-sm">favorite_border</span>
@@ -190,24 +192,29 @@
                             </div>
                             <div class="p-4">
                                 <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2">
-                                    Furniture Kayu Terkait {{ $i }}
+                                    <a href="{{ route('products.show', $item->id) }}" class="hover:text-nataliving-leaf">
+                                        {{ $item->name }}
+                                    </a>
                                 </h3>
                                 <div class="flex items-center mb-2">
                                     <div class="flex text-yellow-400">
                                         @for ($j = 1; $j <= 5; $j++)
-                                            <span
-                                                class="material-icons text-xs">{{ $j <= 4 ? 'star' : 'star_border' }}</span>
+                                            <span class="material-icons text-xs">
+                                                {{ $j <= 4 ? 'star' : 'star_border' }}
+                                            </span>
                                         @endfor
                                     </div>
                                     <span class="text-xs text-gray-500 ml-1">(18)</span>
                                 </div>
-                                <div class="font-bold text-gray-800">Rp
-                                    {{ number_format(rand(2000000, 4000000), 0, ',', '.') }}</div>
+                                <div class="font-bold text-gray-800">
+                                    Rp {{ number_format($item->price, 0, ',', '.') }}
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
+
         </div>
 
         <!-- Image Zoom Modal -->
