@@ -34,7 +34,7 @@
                             class="inline-block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-sm py-2 rounded-md transition mb-3">
                             Hubungi via WhatsApp
                         </a>
-                        <a href="{{ route('shop.show', $product->slug) }}" target="_blank"
+                        <a href="{{ route('shop.show', $product->slug) }}" 
                             class="inline-block w-full text-nataliving-leaf text-center bg-white border border-nataliving-leaf hover:bg-nataliving-accent hover:text-white font-semibold text-sm py-2 rounded-md transition">
                             Lihat Produk
                         </a>
