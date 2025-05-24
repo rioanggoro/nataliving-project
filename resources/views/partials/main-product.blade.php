@@ -146,11 +146,13 @@
                             </a>
 
                             <!-- Bagikan -->
-                            <button type="button"
+                            <button type="button" id="copyLinkBtn"
                                 class="flex items-center justify-center gap-2 py-2.5 md:py-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 font-medium rounded-xl transition duration-200">
                                 <span class="material-icons text-lg md:text-xl">share</span>
-                                <span class="text-sm md:text-base">Bagikan</span>
+                                <span class="text-sm md:text-base">Bagikan Produk</span>
                             </button>
+                            <span id="copyStatus" class="ml-3 text-sm text-green-600 hidden">✅ Link disalin!</span>
+
                         </div>
 
 

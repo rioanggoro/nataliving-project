@@ -470,6 +470,26 @@
             }
             showSlide(0);
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyBtn = document.getElementById('copyLinkBtn');
+            const statusText = document.getElementById('copyStatus');
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        statusText.classList.remove('hidden');
+
+                        setTimeout(() => {
+                            statusText.classList.add('hidden');
+                        }, 2000);
+                    } catch (err) {
+                        alert('Gagal menyalin link.');
+                        console.error(err);
+                    }
+                });
+            }
+        });
     </script>
 
     <style>
