@@ -176,51 +176,17 @@
                         <div class="space-y-6">
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-900 mb-3">Informasi Pengiriman</h3>
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <span class="material-icons text-blue-500">info</span>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm text-blue-700">
-                                                Pengiriman tersedia ke seluruh Indonesia. Estimasi waktu pengiriman 3-7 hari
-                                                kerja tergantung lokasi.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="mt-4 space-y-2">
                                     <div class="flex items-center gap-3">
                                         <span class="material-icons text-nataliving-leaf">local_shipping</span>
-                                        <span>Gratis ongkir untuk pembelian di atas Rp 5.000.000</span>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <span class="material-icons text-nataliving-leaf">schedule</span>
-                                        <span>Pengiriman dalam kota 1-3 hari kerja</span>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <span class="material-icons text-nataliving-leaf">location_on</span>
-                                        <span>Pengiriman luar kota 3-7 hari kerja</span>
+                                        <span>Gratis ongkir</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-900 mb-3">Informasi Garansi</h3>
-                                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <span class="material-icons text-green-500">verified</span>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm text-green-700">
-                                                Produk ini dilengkapi dengan garansi resmi 1 tahun untuk kerusakan
-                                                manufaktur.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="mt-4 space-y-2">
                                     <div class="flex items-center gap-3">
