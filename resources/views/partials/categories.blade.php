@@ -19,30 +19,32 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     @php
                         $categories = [
-                            ['name' => 'Sofa', 'img' => 'sofa.webp'],
-                            ['name' => 'Kursi Tamu', 'img' => 'kursi-tamu.webp'],
-                            ['name' => 'Meja TV', 'img' => 'meja-tv.webp'],
-                            ['name' => 'Bufet TV', 'img' => 'bufet-tv.webp'],
-                            ['name' => 'Kursi Makan', 'img' => 'kursi-makan.png'],
-                            ['name' => 'Meja Makan', 'img' => 'meja-makan.webp'],
-                            ['name' => 'Tempat Tidur', 'img' => 'tempat-tidur.webp'],
-                            ['name' => 'Nakas', 'img' => 'nakas.webp'],
-                            ['name' => 'Meja Rias Minimalis', 'img' => 'meja-rias.webp'],
-                            ['name' => 'Meja Belajar', 'img' => 'meja-belajar.webp'],
-                            ['name' => 'Lemari Pakaian', 'img' => 'lemari-pakaian.webp'],
-                            ['name' => 'Meja Coffee Table', 'img' => 'meja-coffee.webp'],
+                            ['id' => 7, 'name' => 'Sofa', 'img' => 'sofa.webp'],
+                            ['id' => 8, 'name' => 'Kursi Tamu', 'img' => 'kursi-tamu.webp'],
+                            ['id' => 9, 'name' => 'Meja TV', 'img' => 'meja-tv.webp'],
+                            ['id' => 10, 'name' => 'Bufet TV', 'img' => 'bufet-tv.webp'],
+                            ['id' => 11, 'name' => 'Kursi Makan', 'img' => 'kursi-makan.png'],
+                            ['id' => 12, 'name' => 'Meja Makan', 'img' => 'meja-makan.webp'],
+                            ['id' => 13, 'name' => 'Tempat Tidur', 'img' => 'tempat-tidur.webp'],
+                            ['id' => 14, 'name' => 'Nakas', 'img' => 'nakas.webp'],
+                            ['id' => 15, 'name' => 'Meja Rias', 'img' => 'meja-rias.webp'],
+                            ['id' => 16, 'name' => 'Meja Belajar', 'img' => 'meja-belajar.webp'],
+                            ['id' => 17, 'name' => 'Lemari Pakaian', 'img' => 'lemari-pakaian.webp'],
+                            ['id' => 18, 'name' => 'Meja Coffee Table', 'img' => 'meja-coffee.webp'],
                         ];
                     @endphp
                     @foreach ($categories as $cat)
-                        <div class="flex flex-col items-center text-center">
+                        <a href="{{ url('/shop') . '?category[]=' . $cat['id'] }}"
+                            class="flex flex-col items-center text-center group">
                             <div class="overflow-hidden">
                                 <img src="{{ asset('img/category/' . $cat['img']) }}" alt="{{ $cat['name'] }}"
-                                    class="h-20 md:h-24 object-contain mb-2 transition-transform duration-300 hover:scale-125" />
+                                    class="h-20 md:h-24 object-contain mb-2 transition-transform duration-300 group-hover:scale-125" />
                             </div>
-                            <span class="text-xs md:text-sm font-medium text-gray-700">{{ $cat['name'] }}</span>
-                        </div>
+                            <span class="text-xs md:text-sm font-medium text-gray-700 group-hover:text-nataliving-leaf">
+                                {{ $cat['name'] }}
+                            </span>
+                        </a>
                     @endforeach
-
                 </div>
             </div>
         </div>
