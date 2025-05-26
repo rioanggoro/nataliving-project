@@ -22,15 +22,28 @@
             </div>
 
             <!-- Kategori Populer -->
+            @php
+                $popularCategories = [
+                    ['name' => 'Sofa', 'id' => 7],
+                    ['name' => 'Meja TV', 'id' => 9],
+                    ['name' => 'Lemari Pakaian', 'id' => 17],
+                    ['name' => 'Meja Makan', 'id' => 12],
+                ];
+            @endphp
+
             <div>
                 <h4 class="text-lg font-semibold mb-3">Kategori Populer</h4>
                 <ul class="space-y-2 text-sm text-white/80">
-                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Sofa</a></li>
-                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Meja TV</a></li>
-                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Lemari Pakaian</a></li>
-                    <li><a href="{{ route('shop.index') }}" class="hover:text-white">Meja Makan</a></li>
+                    @foreach ($popularCategories as $category)
+                        <li>
+                            <a href="{{ url('/shop') . '?category[]=' . $category['id'] }}" class="hover:text-white">
+                                {{ $category['name'] }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
+
 
             <!-- Kontak -->
             <div>

@@ -31,6 +31,9 @@
                             ['id' => 16, 'name' => 'Meja Belajar', 'img' => 'meja-belajar.webp'],
                             ['id' => 17, 'name' => 'Lemari Pakaian', 'img' => 'lemari-pakaian.webp'],
                             ['id' => 18, 'name' => 'Meja Coffee Table', 'img' => 'meja-coffee.webp'],
+                            ['id' => 19, 'name' => 'Meja Marmer', 'img' => 'meja-marmer.png'],
+                            ['id' => 20, 'name' => 'Outdoor Furniture', 'img' => 'outdoor.png'],
+                            ['id' => 21, 'name' => 'Pintu Jati', 'img' => 'pintu-jati.png'],
                         ];
                     @endphp
                     @foreach ($categories as $cat)
