@@ -24,10 +24,14 @@
                             <span class="font-semibold text-gray-700">Harga:</span>
                             Rp {{ number_format($product->price, 0, ',', '.') }}
                         </p>
+                        <p class="text-xs md:text-sm text-gray-500 mb-1">
+                            <span class="font-semibold text-gray-700">Kategori:</span> {{ $product->category->name }}
+                        </p>
 
                         <p class="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">
                             <span class="font-semibold text-gray-700">Preorder:</span> {{ $product->preorder }} Hari
                         </p>
+
 
                         <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode(url(route('products.show', $product->slug))) }}"
                             target="_blank"
