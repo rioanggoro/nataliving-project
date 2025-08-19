@@ -27,6 +27,7 @@
                     <th class="px-5 py-3">Gambar</th>
                     <th class="px-5 py-3">Nama</th>
                     <th class="px-5 py-3">Kategori</th>
+                    <th class="px-5 py-3">Jumlah SKU</th>
                     <th class="px-5 py-3">Harga</th>
                     <th class="px-5 py-3">Preorder</th>
                     <th class="px-5 py-3 text-center">Aksi</th>
@@ -46,6 +47,12 @@
                         </td>
                         <td class="px-5 py-3">{{ $product->name }}</td>
                         <td class="px-5 py-3">{{ $product->category->name ?? '-' }}</td>
+                        <td class="px-5 py-3">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                {{ $product->skus_count }} SKU
+                            </span>
+                        </td>
                         <td class="px-5 py-3">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                         <td class="px-5 py-3">{{ $product->preorder }} hari</td>
                         <td class="px-5 py-3 text-center space-x-2">

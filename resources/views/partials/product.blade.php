@@ -27,6 +27,10 @@
                         <p class="text-xs md:text-sm text-gray-500 mb-1">
                             <span class="font-semibold text-gray-700">Kategori:</span> {{ $product->category->name }}
                         </p>
+                        <p class="text-xs md:text-sm text-gray-500 mb-1">
+                            <span class="font-semibold text-gray-700">SKU:</span>
+                            {{ $product->skus->first()->sku ?? 'N/A' }}
+                        </p>
 
                         <p class="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">
                             <span class="font-semibold text-gray-700">Preorder:</span> {{ $product->preorder }} Hari

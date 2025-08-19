@@ -110,6 +110,10 @@
                             <span class="font-semibold text-gray-700">Kategori:</span>
                             {{ $product->category->name }}
                         </p>
+                        <p class="text-xs md:text-sm text-gray-500 mb-1">
+                            <span class="font-semibold text-gray-700">SKU:</span>
+                            {{ $product->skus->first()->sku ?? 'N/A' }}
+                        </p>
                         <!-- Product Title -->
                         <h1 class="text-xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-2 leading-tight">
                             {{ $product->name }}</h1>

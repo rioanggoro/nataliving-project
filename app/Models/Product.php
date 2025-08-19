@@ -26,4 +26,8 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class)->where('is_main', true);
     }
+    public function skus()
+    {
+        return $this->hasMany(ProductSku::class);
+    }
 }

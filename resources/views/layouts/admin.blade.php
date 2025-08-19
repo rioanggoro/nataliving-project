@@ -69,6 +69,20 @@
                         @endif
                     </a>
 
+                    {{-- ✅ MENU SKU PRODUK TERPISAH --}}
+                    {{-- Ganti kode Anda dengan ini --}}
+
+                    <a href="{{ route('skus.index') }}"
+                        class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
+    {{ request()->routeIs('skus.*') ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
+                        <div
+                            class="{{ request()->routeIs('skus.*') ? 'bg-indigo-600' : 'bg-gray-200 group-hover:bg-indigo-600' }} p-2 rounded-lg transition-all duration-200">
+                            <i data-lucide="tags"
+                                class="w-4 h-4 {{ request()->routeIs('skus.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}"></i>
+                        </div>
+                        <span class="font-medium">SKU Produk</span>
+                    </a>
+
                     {{-- Kategori --}}
                     <a href="{{ route('categories.index') }}"
                         class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group

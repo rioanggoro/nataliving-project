@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BlogController;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\ProductSkuController;
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
@@ -75,5 +76,7 @@ Route::prefix('admin')->group(function () {
         
         // Route untuk upload gambar Trix Editor
         Route::post('/upload-trix-image', [BlogController::class, 'uploadTrixImage'])->name('trix.upload');
+
+        Route::resource('/skus', ProductSkuController::class);
     });
 });
