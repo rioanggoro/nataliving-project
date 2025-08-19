@@ -51,9 +51,15 @@
 
                     <!-- Action Buttons -->
                     <div class="space-y-2">
-                        <!-- WhatsApp Button -->
-                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }} - {{ urlencode(route('shop.show', $product->slug)) }}"
-                            target="_blank"
+
+                        @php
+                            // 1. Siapkan semua bagian pesan
+                            $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
+                            $productUrl = route('shop.show', $product->slug);
+                            $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
+                            $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
+                        @endphp
+                        <a href="{{ $whatsappUrl }}" target="_blank"
                             class="flex items-center justify-center w-full py-2 bg-nataliving-leaf hover:bg-nataliving-accent text-white font-medium text-xs md:text-sm rounded-md transition">
                             <span class="material-icons text-sm mr-1">chat</span>
                             <span class="hidden sm:inline">Hubungi via WhatsApp</span>

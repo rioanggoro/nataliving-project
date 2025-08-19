@@ -146,8 +146,16 @@
                         <!-- Action Buttons -->
                         <div class="grid grid-cols-2 gap-3 md:gap-4">
                             <!-- Hubungi via WhatsApp -->
-                            <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode($product->name) }}"
-                                target="_blank"
+                            @php
+                                // 1. Siapkan semua bagian pesan
+                                $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
+                                $productUrl = route('shop.show', $product->slug);
+                                $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
+                                $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
+                            @endphp
+
+                            {{-- 3. Gunakan URL yang sudah jadi di sini --}}
+                            <a href="{{ $whatsappUrl }}" target="_blank"
                                 class="flex items-center justify-center gap-2 py-2.5 md:py-3 border-2 border-nataliving-leaf text-nataliving-leaf hover:bg-nataliving-leaf hover:text-white font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
                                 <span class="material-icons text-lg md:text-xl">chat</span>
                                 <span class="text-sm md:text-base">WhatsApp</span>

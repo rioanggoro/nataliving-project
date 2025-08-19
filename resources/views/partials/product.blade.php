@@ -35,10 +35,15 @@
                         <p class="text-xs md:text-sm text-gray-500 mb-3 md:mb-4">
                             <span class="font-semibold text-gray-700">Preorder:</span> {{ $product->preorder }} Hari
                         </p>
+                        @php
+                            // 1. Siapkan semua bagian pesan
+                            $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
+                            $productUrl = route('shop.show', $product->slug);
+                            $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
+                            $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
+                        @endphp
 
-
-                        <a href="https://wa.me/628112669123?text=Halo, saya tertarik dengan produk {{ urlencode(url(route('products.show', $product->slug))) }}"
-                            target="_blank"
+                        <a href="{{ $whatsappUrl }}" target="_blank"
                             class="inline-block w-full text-center bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold text-xs md:text-sm py-2 rounded-md transition mb-2 md:mb-3">
                             <span class="hidden sm:inline">Hubungi via WhatsApp</span>
                             <span class="sm:hidden">WhatsApp</span>
