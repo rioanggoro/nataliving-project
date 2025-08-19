@@ -56,19 +56,33 @@
                     {{-- Harga --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-1">Harga</label>
-                        <input type="number" name="price" value="{{ old('price') }}"
-                            class="w-full border rounded px-3 py-2 @error('price') border-red-500 @enderror"
-                            placeholder="Rp">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
+                            <input type="text" name="price" value="{{ old('price') }}"
+                                class="w-full border rounded px-3 py-2 pl-10 @error('price') border-red-500 @enderror"
+                                placeholder="0">
+                        </div>
                         @error('price')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const priceInput = document.querySelector('input[name="price"]');
+                            priceInput.addEventListener('input', function(e) {
+                                let value = e.target.value.replace(/\D/g, '');
+                                value = value ? parseInt(value, 10).toLocaleString('id-ID') : '';
+                                e.target.value = value;
+                            });
+                        });
+                    </script>
 
                     {{-- Deskripsi --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-1">Deskripsi</label>
-                        <textarea name="description" rows="4"
-                            class="w-full border rounded px-3 py-2 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                        <input id="content" type="hidden" name="description" value="{{ old('description') }}">
+                        <trix-editor input="content"
+                            class="trix-content bg-white border border-gray-300 rounded-lg px-4 py-2 min-h-[200px] focus:outline-none focus:ring-2 focus:ring-indigo-500"></trix-editor>
                         @error('description')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
