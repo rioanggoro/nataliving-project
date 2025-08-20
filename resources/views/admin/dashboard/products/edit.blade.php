@@ -61,23 +61,12 @@
                             <input type="text" name="price"
                                 value="{{ old('price', number_format($product->price, 0, ',', '.')) }}"
                                 class="w-full border rounded px-3 py-2 pl-10 @error('price') border-red-500 @enderror"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                placeholder="Contoh: 100.000">
+                                {{-- 🚫 HAPUS ATRIBUT oninput DARI SINI --}} placeholder="Contoh: 100.000">
                         </div>
                         @error('price')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <script>
-                        document.querySelector('input[name="price"]').addEventListener('input', function(e) {
-                            let value = e.target.value.replace(/\D/g, '');
-                            if (value) {
-                                e.target.value = parseInt(value).toLocaleString('id-ID');
-                            } else {
-                                e.target.value = '';
-                            }
-                        });
-                    </script>
 
                     {{-- Deskripsi --}}
                     <div class="mb-4">

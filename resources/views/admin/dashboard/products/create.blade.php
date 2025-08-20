@@ -66,16 +66,7 @@
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const priceInput = document.querySelector('input[name="price"]');
-                            priceInput.addEventListener('input', function(e) {
-                                let value = e.target.value.replace(/\D/g, '');
-                                value = value ? parseInt(value, 10).toLocaleString('id-ID') : '';
-                                e.target.value = value;
-                            });
-                        });
-                    </script>
+
 
                     {{-- Deskripsi --}}
                     <div class="mb-4">
