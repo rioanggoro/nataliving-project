@@ -2,89 +2,82 @@
             <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
                     <!-- Product Gallery Section -->
-                    <div class="p-4 md:p-6 bg-gray-50 border-r border-gray-100">
-                        <!-- Main Image Carousel -->
-                        <div id="default-carousel" class="relative w-full mb-4" data-carousel="slide">
-                            <!-- Carousel wrapper -->
-                            <div class="relative h-[300px] md:h-[500px] overflow-hidden rounded-2xl shadow-lg bg-white">
-                                @foreach ($product->images as $index => $image)
-                                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                        <img src="{{ asset('storage/' . $image->image_url) }}"
-                                            class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                            alt="{{ $product->name }} - Image {{ $index + 1 }}">
-
-                                        <!-- Image Counter -->
-                                        @if ($product->images->count() > 1)
-                                            <div
-                                                class="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                                                <span class="current-slide">{{ $index + 1 }}</span> /
-                                                {{ $product->images->count() }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            @if ($product->images->count() > 1)
-                                <!-- Slider indicators (dots) -->
+                    <div class="relative bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
+                        <!-- Main Image Container -->
+                        <div class="relative mb-6">
+                            <div id="main-carousel" class="relative w-full max-w-md mx-auto">
+                                <!-- Main Image Display -->
                                 <div
-                                    class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                                    class="relative aspect-[4/5] w-full bg-white rounded-2xl shadow-lg overflow-hidden group">
+                                    @foreach ($product->images as $index => $image)
+                                        <div class="carousel-slide absolute inset-0 w-full h-full transition-opacity duration-500 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
+                                            data-slide="{{ $index }}">
+                                            <img src="{{ asset('storage/' . $image->image_url) }}"
+                                                class="w-full h-full object-contain p-4"
+                                                alt="{{ $product->name }} - Image {{ $index + 1 }}">
+                                        </div>
+                                    @endforeach
+
+                                    <!-- Image Counter Badge -->
+                                    @if ($product->images->count() > 1)
+                                        <div
+                                            class="absolute top-4 right-4 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                            <span id="current-counter">1</span> / {{ $product->images->count() }}
+                                        </div>
+                                    @endif
+
+                                    <!-- Navigation Arrows -->
+                                    @if ($product->images->count() > 1)
+                                        <button type="button" id="prev-btn"
+                                            class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 opacity-0 group-hover:opacity-100">
+                                            <span class="material-icons text-gray-700">chevron_left</span>
+                                        </button>
+                                        <button type="button" id="next-btn"
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 opacity-0 group-hover:opacity-100">
+                                            <span class="material-icons text-gray-700">chevron_right</span>
+                                        </button>
+                                    @endif
+
+                                    <!-- Zoom Button -->
+                                    <button type="button" id="zoom-btn"
+                                        class="absolute top-4 left-4 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 opacity-0 group-hover:opacity-100">
+                                        <span class="material-icons text-gray-700">zoom_in</span>
+                                    </button>
+                                </div>
+
+                                <!-- Dot Indicators -->
+                                @if ($product->images->count() > 1)
+                                    <div class="flex justify-center mt-4 space-x-2">
+                                        @foreach ($product->images as $index => $image)
+                                            <button type="button"
+                                                class="dot-indicator w-2.5 h-2.5 rounded-full transition-all duration-200 {{ $index === 0 ? 'bg-nataliving-leaf' : 'bg-gray-300 hover:bg-gray-400' }}"
+                                                data-slide="{{ $index }}">
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail Gallery -->
+                        @if ($product->images->count() > 1)
+                            <div class="flex justify-center">
+                                <div class="flex space-x-3 overflow-x-auto pb-2 max-w-md scrollbar-hide">
                                     @foreach ($product->images as $index => $image)
                                         <button type="button"
-                                            class="w-3 h-3 rounded-full bg-white/50 hover:bg-white/80 transition-colors duration-200 {{ $index === 0 ? 'bg-white' : '' }}"
-                                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
-                                            aria-label="Slide {{ $index + 1 }}"
-                                            data-carousel-slide-to="{{ $index }}">
+                                            class="thumbnail-btn flex-shrink-0 relative group {{ $index === 0 ? 'ring-2 ring-nataliving-leaf' : 'ring-1 ring-gray-200' }} rounded-lg overflow-hidden transition-all duration-200 hover:ring-2 hover:ring-nataliving-leaf"
+                                            data-slide="{{ $index }}">
+                                            <div class="aspect-[4/5] w-16 bg-white">
+                                                <img src="{{ asset('storage/' . $image->image_url) }}"
+                                                    class="w-full h-full object-contain p-1"
+                                                    alt="Thumbnail {{ $index + 1 }}">
+                                            </div>
+                                            <div
+                                                class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-200">
+                                            </div>
                                         </button>
                                     @endforeach
                                 </div>
-
-                                <!-- Slider controls -->
-                                <button type="button"
-                                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 md:px-4 cursor-pointer group focus:outline-none"
-                                    data-carousel-prev>
-                                    <span
-                                        class="inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none transition-all duration-200">
-                                        <svg class="w-3 h-3 md:w-4 md:h-4 text-white rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M5 1 1 5l4 4" />
-                                        </svg>
-                                        <span class="sr-only">Previous</span>
-                                    </span>
-                                </button>
-                                <button type="button"
-                                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 md:px-4 cursor-pointer group focus:outline-none"
-                                    data-carousel-next>
-                                    <span
-                                        class="inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none transition-all duration-200">
-                                        <svg class="w-3 h-3 md:w-4 md:h-4 text-white rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m1 9 4-4-4-4" />
-                                        </svg>
-                                        <span class="sr-only">Next</span>
-                                    </span>
-                                </button>
-                            @endif
-                        </div>
-
-                        <!-- Thumbnails Gallery -->
-                        @if ($product->images->count() > 1)
-                            <div class="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                                @foreach ($product->images as $index => $image)
-                                    <div class="thumb flex-shrink-0 cursor-pointer rounded-lg md:rounded-xl overflow-hidden group relative {{ $index === 0 ? 'ring-2 ring-nataliving-leaf' : 'ring-1 ring-gray-200' }}"
-                                        data-slide="{{ $index }}" data-carousel-slide-to="{{ $index }}">
-                                        <div class="w-16 h-16 md:w-20 md:h-20 overflow-hidden">
-                                            <img src="{{ asset('storage/' . $image->image_url) }}"
-                                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                alt="Thumbnail {{ $index + 1 }}">
-                                        </div>
-                                        <div
-                                            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200">
-                                        </div>
-                                    </div>
-                                @endforeach
                             </div>
                         @endif
                     </div>
@@ -186,6 +179,81 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Carousel & Zoom Script -->
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const slides = document.querySelectorAll('.carousel-slide');
+                                const dots = document.querySelectorAll('.dot-indicator');
+                                const thumbnails = document.querySelectorAll('.thumbnail-btn');
+                                const prevBtn = document.getElementById('prev-btn');
+                                const nextBtn = document.getElementById('next-btn');
+                                const counter = document.getElementById('current-counter');
+                                const zoomBtn = document.getElementById('zoom-btn');
+                                let current = 0;
+
+                                function showSlide(idx) {
+                                    slides.forEach((slide, i) => {
+                                        slide.classList.toggle('opacity-100', i === idx);
+                                        slide.classList.toggle('opacity-0', i !== idx);
+                                    });
+                                    dots.forEach((dot, i) => {
+                                        dot.classList.toggle('bg-nataliving-leaf', i === idx);
+                                        dot.classList.toggle('bg-gray-300', i !== idx);
+                                    });
+                                    thumbnails.forEach((thumb, i) => {
+                                        thumb.classList.toggle('ring-2', i === idx);
+                                        thumb.classList.toggle('ring-nataliving-leaf', i === idx);
+                                        thumb.classList.toggle('ring-1', i !== idx);
+                                        thumb.classList.toggle('ring-gray-200', i !== idx);
+                                    });
+                                    if (counter) counter.textContent = idx + 1;
+                                    current = idx;
+                                }
+
+                                if (slides.length > 0) showSlide(0);
+
+                                if (prevBtn) {
+                                    prevBtn.addEventListener('click', () => {
+                                        showSlide((current - 1 + slides.length) % slides.length);
+                                    });
+                                }
+                                if (nextBtn) {
+                                    nextBtn.addEventListener('click', () => {
+                                        showSlide((current + 1) % slides.length);
+                                    });
+                                }
+                                dots.forEach((dot, i) => {
+                                    dot.addEventListener('click', () => showSlide(i));
+                                });
+                                thumbnails.forEach((thumb, i) => {
+                                    thumb.addEventListener('click', () => showSlide(i));
+                                });
+
+                                // Zoom functionality
+                                if (zoomBtn) {
+                                    zoomBtn.addEventListener('click', () => {
+                                        const img = slides[current].querySelector('img');
+                                        if (!img) return;
+                                        const modal = document.createElement('div');
+                                        modal.style.position = 'fixed';
+                                        modal.style.top = 0;
+                                        modal.style.left = 0;
+                                        modal.style.width = '100vw';
+                                        modal.style.height = '100vh';
+                                        modal.style.background = 'rgba(0,0,0,0.8)';
+                                        modal.style.display = 'flex';
+                                        modal.style.alignItems = 'center';
+                                        modal.style.justifyContent = 'center';
+                                        modal.style.zIndex = 9999;
+                                        modal.innerHTML =
+                                            `<img src="${img.src}" style="max-width:90vw;max-height:90vh;border-radius:1rem;box-shadow:0 2px 16px #0008;">`;
+                                        modal.addEventListener('click', () => document.body.removeChild(modal));
+                                        document.body.appendChild(modal);
+                                    });
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
