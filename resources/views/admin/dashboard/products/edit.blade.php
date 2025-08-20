@@ -82,8 +82,14 @@
                     {{-- Deskripsi --}}
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-1">Deskripsi</label>
+
+
+                        <input id="content" type="hidden" name="description"
+                            value="{{ old('description', $product->description) }}">
+
                         <trix-editor input="content"
                             class="trix-content bg-white border border-gray-300 rounded-lg px-4 py-2 min-h-[200px] focus:outline-none focus:ring-2 focus:ring-indigo-500"></trix-editor>
+
                         @error('description')
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
