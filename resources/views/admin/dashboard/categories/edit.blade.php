@@ -6,7 +6,7 @@
     <div class="max-w-xl bg-white p-6 rounded shadow mx-auto">
         <h1 class="text-2xl font-bold mb-6">Edit Kategori</h1>
 
-        <form method="POST" action="{{ route('categories.update', $category->id) }}">
+        <form method="POST" action="{{ route('admin.categories.update', $category->id) }}">
             @csrf
             @method('PUT')
 

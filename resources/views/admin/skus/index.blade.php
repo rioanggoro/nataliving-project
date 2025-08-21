@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold">Manage All SKUs</h2>
-        <a href="{{ route('skus.create') }}"
+        <a href="{{ route('admin.skus.create') }}"
             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transition">
             + Add New SKU
         </a>
@@ -40,14 +40,15 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $sku->product->name ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('skus.edit', $sku) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{{ route('admin.skus.edit', $sku) }}"
+                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             <button data-modal-target="popup-modal-{{ $sku->id }}"
                                 data-modal-toggle="popup-modal-{{ $sku->id }}" type="button"
                                 class="text-red-600 hover:text-red-900 ml-4">
                                 Delete
                             </button>
                         </td>
-                        <x-modal.delete :id="'popup-modal-' . $sku->id" :route="route('skus.destroy', $sku)" :message="'Yakin ingin menghapus SKU \'' . $sku->name . '\'?'" />
+                        <x-modal.delete :id="'popup-modal-' . $sku->id" :route="route('admin.skus.destroy', $sku)" :message="'Yakin ingin menghapus SKU \'' . $sku->name . '\'?'" />
                     </tr>
                 @empty
                     <tr>

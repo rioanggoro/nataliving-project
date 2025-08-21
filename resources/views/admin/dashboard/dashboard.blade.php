@@ -41,8 +41,9 @@
                     <h2 class="text-xl font-bold text-gray-800">Produk Terbaru</h2>
                     <p class="text-sm text-gray-500">Daftar 5 produk yang baru ditambahkan</p>
                 </div>
-                <a href="{{ route('products.index') }}"
-                    class="text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center">
+                <a href="{{ route('admin.products.index') }}
+                    class="text-sm font-medium text-blue-600
+                    hover:text-blue-800 flex items-center">
                     Lihat Semua
                     <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                 </a>

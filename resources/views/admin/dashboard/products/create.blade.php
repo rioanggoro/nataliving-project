@@ -5,7 +5,7 @@
 @section('content')
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data"
+        <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data"
             class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
             @csrf
 

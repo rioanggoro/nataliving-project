@@ -22,7 +22,8 @@
         @endif
 
         {{-- Form --}}
-        <form id="createBlogForm" action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form id="createBlogForm" action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data"
+            class="space-y-6">
             @csrf
 
             {{-- Judul --}}
@@ -42,17 +43,19 @@
                         file:rounded-md file:border-0
                         file:text-sm file:font-semibold
                         file:bg-indigo-50 file:text-indigo-700
-                        hover:file:bg-indigo-100" 
+                        hover:file:bg-indigo-100"
                     onchange="previewImage()" />
-                
+
                 {{-- Preview Container --}}
                 <div id="imagePreview" class="hidden mt-4">
                     <div class="relative w-full max-w-[300px]">
                         <img id="preview" src="#" alt="Preview" class="w-full h-auto rounded-lg shadow-sm">
-                        <button type="button" onclick="removeImage()" 
+                        <button type="button" onclick="removeImage()"
                             class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
                             </svg>
                         </button>
                     </div>
@@ -69,7 +72,7 @@
 
             {{-- Tombol --}}
             <div class="flex justify-end pt-4">
-                <a href="{{ route('blogs.index') }}"
+                <a href="{{ route('admin.blogs.index') }}"
                     class="inline-flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg mr-2 transition">
                     Batal
                 </a>
@@ -88,7 +91,7 @@
         // Form submission dengan SweetAlert2
         document.getElementById('createBlogForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             Swal.fire({
                 title: 'Simpan Blog?',
                 text: "Pastikan semua data sudah benar",
@@ -118,7 +121,7 @@
         });
 
         // Tampilkan SweetAlert2 jika ada session success
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',
@@ -157,7 +160,7 @@
         // Konfigurasi untuk upload gambar di Trix Editor
         document.addEventListener('trix-attachment-add', function(event) {
             var attachment = event.attachment;
-            
+
             if (attachment.file) {
                 uploadTrixImage(attachment);
             }
@@ -167,21 +170,21 @@
             // Buat form data untuk upload
             var formData = new FormData();
             formData.append('file', attachment.file);
-            
+
             // Tampilkan progress bar
             attachment.setUploadProgress(0);
-            
+
             // Gunakan XMLHttpRequest sebagai alternatif fetch
             var xhr = new XMLHttpRequest();
-            
-            xhr.open('POST', '{{ route('trix.upload') }}', true);
+
+            xhr.open('POST', '{{ route('admin.trix.upload') }}', true);
             xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
-            
+
             xhr.upload.onprogress = function(event) {
                 var progress = event.loaded / event.total * 100;
                 attachment.setUploadProgress(progress);
             };
-            
+
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     try {
@@ -204,13 +207,13 @@
                     alert('Upload gambar gagal. Silakan coba lagi.');
                 }
             };
-            
+
             xhr.onerror = function() {
                 console.error('Network Error');
                 attachment.remove();
                 alert('Upload gambar gagal. Silakan coba lagi.');
             };
-            
+
             xhr.send(formData);
         }
     </script>

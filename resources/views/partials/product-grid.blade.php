@@ -57,7 +57,7 @@
                             $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
                             $productUrl = route('shop.show', $product->slug);
                             $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
-                            $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
+                            $whatsappUrl = 'https://wa.me/62819870789?text=' . urlencode($message);
                         @endphp
                         <a href="{{ $whatsappUrl }}" target="_blank"
                             class="flex items-center justify-center w-full py-2 bg-nataliving-leaf hover:bg-nataliving-accent text-white font-medium text-xs md:text-sm rounded-md transition">

@@ -16,6 +16,7 @@ Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return 'Storage link created successfully.';
 });
+
 /*
 |--------------------------------------------------------------------------
 | Halaman Depan (Public, User Tanpa Login)
@@ -35,6 +36,7 @@ Route::get('/blog/{slug}', [HomeController::class, 'blogShow'])->name('blog.show
 
 // Route login untuk redirect ke login admin
 Route::get('/login', function () {
+    // ✅ Diperbarui untuk mengarah ke nama route admin yang baru
     return redirect()->route('admin.auth.login.index', ['auth' => 'required']);
 })->name('login');
 
@@ -42,10 +44,11 @@ Route::get('/login', function () {
 |--------------------------------------------------------------------------
 | Dashboard User (Login, Non-admin)
 |--------------------------------------------------------------------------
+| Catatan: Grup ini sepertinya mengarah ke admin.dashboard, mungkin perlu
+|          direview jika ada dashboard khusus user. Untuk saat ini dibiarkan.
 */
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard'); // Nama route ini mungkin perlu diubah jika ada dashboard user terpisah
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -57,26 +60,27 @@ Route::middleware(['auth'])->group(function () {
 | Dashboard Admin & Resource Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('admin')->group(function () {
+// ✅ DITAMBAHKAN: name('admin.') untuk memberi prefix nama pada semua route di dalam grup ini
+Route::name('admin.')->prefix('admin')->group(function () {
     // Auth Routes
     Route::get('/login', function () {
         return view('admin.auth.login.index');
-    })->name('admin.auth.login.index');
+    })->name('auth.login.index'); // Nama route menjadi: admin.auth.login.index
 
-    Route::post('/login', [AuthController::class, 'login'])->name('admin.auth.login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
+    Route::post('/login', [AuthController::class, 'login'])->name('auth.login'); // Nama route: admin.auth.login
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout'); // Nama route: admin.auth.logout
 
     // Protected Routes
     Route::middleware(['auth:admin'])->group(function () {
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard'); // Nama route: admin.dashboard
 
+        // Nama route akan otomatis menjadi admin.products.*, admin.categories.*, dst.
         Route::resource('/products', AdminProductController::class);
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/blogs', BlogController::class);
+        Route::resource('/skus', ProductSkuController::class);
         
         // Route untuk upload gambar Trix Editor
         Route::post('/upload-trix-image', [BlogController::class, 'uploadTrixImage'])->name('trix.upload');
-
-        Route::resource('/skus', ProductSkuController::class);
     });
 });

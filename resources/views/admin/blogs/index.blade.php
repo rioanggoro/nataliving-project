@@ -9,7 +9,7 @@
 @section('content')
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-xl font-bold">Daftar Blog</h1>
-        <a href="{{ route('blogs.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">+ Tambah</a>
+        <a href="{{ route('admin.blogs.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">+ Tambah</a>
     </div>
 
     @if (session('success'))
@@ -43,11 +43,14 @@
                         </td>
                         <td class="p-4 font-medium text-gray-900">{{ $blog->title }}</td>
                         <td class="p-4 space-x-2">
-                            <a href="{{ route('blogs.edit', $blog->id) }}" class="text-blue-600 hover:underline">Edit</a>
-                            <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="inline delete-form">
-                                @csrf 
+                            <a href="{{ route('admin.blogs.edit', $blog->id) }}"
+                                class="text-blue-600 hover:underline">Edit</a>
+                            <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST"
+                                class="inline delete-form">
+                                @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmDelete(this.form)" class="text-red-600 hover:underline">Hapus</button>
+                                <button type="button" onclick="confirmDelete(this.form)"
+                                    class="text-red-600 hover:underline">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -92,7 +95,7 @@
         }
 
         // Tampilkan SweetAlert2 jika ada session success
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',

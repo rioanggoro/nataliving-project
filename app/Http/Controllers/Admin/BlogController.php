@@ -51,7 +51,7 @@ class BlogController extends Controller
             'thumbnail' => $thumbnailPath,
         ]);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog berhasil ditambahkan!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog berhasil ditambahkan!');
     }
 
     /**
@@ -90,7 +90,7 @@ class BlogController extends Controller
 
         $blog->update($updateData);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog berhasil diperbarui!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog berhasil diperbarui!');
     }
 
     /**
@@ -105,7 +105,7 @@ class BlogController extends Controller
 
         $blog->delete();
 
-        return redirect()->route('blogs.index')->with('success', 'Blog berhasil dihapus!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog berhasil dihapus!');
     }
 
     /**

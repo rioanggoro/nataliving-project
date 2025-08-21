@@ -15,7 +15,7 @@
                 </div>
                 <div class="p-5">
                     <h3 class="font-medium text-gray-800 mb-2 line-clamp-2 leading-tight">
-                        <a href="{{ route('products.show', $item->id) }}"
+                        <a href="{{ route('shop.show', $item->slug) }}"
                             class="hover:text-nataliving-leaf transition-colors">
                             {{ $item->name }}
                         </a>

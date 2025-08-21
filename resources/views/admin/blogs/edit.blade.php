@@ -22,7 +22,8 @@
         @endif
 
         {{-- Form --}}
-        <form id="editBlogForm" action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form id="editBlogForm" action="{{ route('admin.blogs.update', $blog->id) }}" method="POST"
+            enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -44,12 +45,12 @@
                         file:rounded-md file:border-0
                         file:text-sm file:font-semibold
                         file:bg-indigo-50 file:text-indigo-700
-                        hover:file:bg-indigo-100" 
+                        hover:file:bg-indigo-100"
                     onchange="previewImage()" />
 
                 <div class="mt-2">
                     <p class="text-sm text-gray-600">Gambar saat ini:</p>
-                    <img id="thumbnail-preview" src="{{ $blog->thumbnail ? asset('storage/' . $blog->thumbnail) : '' }}" 
+                    <img id="thumbnail-preview" src="{{ $blog->thumbnail ? asset('storage/' . $blog->thumbnail) : '' }}"
                         alt="Thumbnail" class="h-32 mt-1 rounded {{ $blog->thumbnail ? '' : 'hidden' }}">
                 </div>
             </div>
@@ -64,7 +65,7 @@
 
             {{-- Tombol --}}
             <div class="flex justify-end pt-4">
-                <a href="{{ route('blogs.index') }}"
+                <a href="{{ route('admin.blogs.index') }}"
                     class="inline-flex items-center bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg mr-2 transition">
                     Batal
                 </a>
@@ -83,7 +84,7 @@
         // Form submission dengan SweetAlert2
         document.getElementById('editBlogForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             Swal.fire({
                 title: 'Update Blog?',
                 text: "Pastikan semua perubahan sudah benar",
@@ -113,7 +114,7 @@
         });
 
         // Tampilkan SweetAlert2 jika ada session success
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 title: 'Berhasil!',
                 text: '{{ session('success') }}',
@@ -125,15 +126,15 @@
         function previewImage() {
             const input = document.getElementById('thumbnail');
             const preview = document.getElementById('thumbnail-preview');
-            
+
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                
+
                 reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.classList.remove('hidden');
                 }
-                
+
                 reader.readAsDataURL(input.files[0]);
             }
         }

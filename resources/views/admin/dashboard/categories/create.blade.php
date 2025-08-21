@@ -6,7 +6,7 @@
     <div class="max-w-xl bg-white p-6 rounded shadow mx-auto">
         <h1 class="text-2xl font-bold mb-6">Tambah Kategori</h1>
 
-        <form method="POST" action="{{ route('categories.store') }}">
+        <form method="POST" action="{{ route('admin.categories.store') }}">
             @csrf
 
             {{-- Nama kategori --}}

@@ -53,8 +53,9 @@
                     </a>
 
                     {{-- Produk --}}
-                    <a href="{{ route('products.index') }}"
-                        class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
+                    <a href="{{ route('admin.products.index') }}"
+                        class="flex items-center gap-3
+                        px-3 py-3 rounded-lg transition-all duration-200 group
                         {{ request()->routeIs('products.*')
                             ? 'bg-indigo-50 text-indigo-600'
                             : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
@@ -72,7 +73,7 @@
                     {{-- ✅ MENU SKU PRODUK TERPISAH --}}
                     {{-- Ganti kode Anda dengan ini --}}
 
-                    <a href="{{ route('skus.index') }}"
+                    <a href="{{ route('admin.skus.index') }}"
                         class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
     {{ request()->routeIs('skus.*') ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
                         <div
@@ -84,7 +85,7 @@
                     </a>
 
                     {{-- Kategori --}}
-                    <a href="{{ route('categories.index') }}"
+                    <a href="{{ route('admin.categories.index') }}"
                         class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
                         {{ request()->routeIs('categories.*')
                             ? 'bg-indigo-50 text-indigo-600'
@@ -101,7 +102,7 @@
                     </a>
 
                     {{-- Blog --}}
-                    <a href="{{ route('blogs.index') }}"
+                    <a href="{{ route('admin.blogs.index') }}"
                         class="flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
     {{ request()->routeIs('blogs.*') ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600' }}">
                         <div

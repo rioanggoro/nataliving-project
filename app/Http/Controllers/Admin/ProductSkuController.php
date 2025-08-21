@@ -41,7 +41,7 @@ class ProductSkuController extends Controller
 
         ProductSku::create($request->all());
 
-        return redirect()->route('skus.index')
+        return redirect()->route('admin.skus.index')
             ->with('success', 'SKU created successfully.');
     }
 
@@ -70,7 +70,7 @@ class ProductSkuController extends Controller
 
         $sku->update($request->all());
 
-        return redirect()->route('skus.index')
+        return redirect()->route('admin.skus.index')
             ->with('success', 'SKU updated successfully.');
     }
 
@@ -81,7 +81,7 @@ class ProductSkuController extends Controller
     {
         $sku->delete();
 
-        return redirect()->route('skus.index')
+        return redirect()->route('admin.skus.index')
             ->with('success', 'SKU deleted successfully.');
     }
 }

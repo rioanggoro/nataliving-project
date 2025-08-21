@@ -25,7 +25,8 @@
                             Rp {{ number_format($product->price, 0, ',', '.') }}
                         </p>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">
-                            <span class="font-semibold text-gray-700">Kategori:</span> {{ $product->category->name }}
+                            <span class="font-semibold text-gray-700">Kategori:</span>
+                            {{ $product->category->name ?? 'N/A' }}
                         </p>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">
                             <span class="font-semibold text-gray-700">SKU:</span>
@@ -40,7 +41,7 @@
                             $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
                             $productUrl = route('shop.show', $product->slug);
                             $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
-                            $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
+                            $whatsappUrl = 'https://wa.me/62819870789?text=' . urlencode($message);
                         @endphp
 
                         <a href="{{ $whatsappUrl }}" target="_blank"

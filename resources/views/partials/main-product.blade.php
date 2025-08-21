@@ -101,7 +101,7 @@
                         </div>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">
                             <span class="font-semibold text-gray-700">Kategori:</span>
-                            {{ $product->category->name }}
+                            {{ $product->category ? $product->category->name : 'Tidak diketahui' }}
                         </p>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">
                             <span class="font-semibold text-gray-700">SKU:</span>
@@ -129,29 +129,17 @@
                             </div>
                         </div>
 
-                        <!-- Product Description - Mobile Only -->
-                        <div class="mb-6 md:hidden">
-                            <div class="text-gray-600 text-sm leading-relaxed">
-                                {{ Str::limit(strip_tags($product->description), 150) }}
-                            </div>
-                        </div>
 
                         <!-- Action Buttons -->
                         <div class="grid grid-cols-2 gap-3 md:gap-4">
                             <!-- Hubungi via WhatsApp -->
                             @php
-                                // 1. Siapkan semua bagian pesan
+                                // 1. Siapkan semua bagian pesan tanpa image_url
                                 $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
                                 $productUrl = route('shop.show', $product->slug);
-                                $imageUrl = isset($product->images[0])
-                                    ? asset('storage/' . $product->images[0]->image_url)
-                                    : '';
-                                $fullUrl = $productUrl . ($imageUrl ? '/image_url?img=' . urlencode($imageUrl) : '');
-                                $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$fullUrl}\n\nApakah bisa dibantu?";
-                                $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
-                            @endphp
-
-                            {{-- 3. Gunakan URL yang sudah jadi di sini --}}
+                                $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
+                                $whatsappUrl = 'https://wa.me/62819870789?text=' . urlencode($message);
+                            @endphp {{-- 3. Gunakan URL yang sudah jadi di sini --}}
                             <a href="{{ $whatsappUrl }}" target="_blank"
                                 class="flex items-center justify-center gap-2 py-2.5 md:py-3 border-2 border-nataliving-leaf text-nataliving-leaf hover:bg-nataliving-leaf hover:text-white font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
                                 <span class="material-icons text-lg md:text-xl">chat</span>

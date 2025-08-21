@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data"
+        <form method="POST" action="{{ route('admin.products.update', $product->id) }}" enctype="multipart/form-data"
             class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
             @csrf
             @method('PUT')
@@ -129,7 +129,7 @@
 
             {{-- Tombol --}}
             <div class="text-right mt-6">
-                <a href="{{ route('products.index') }}"
+                <a href="{{ route('admin.products.index') }}"
                     class="border border-gray-300 text-gray-600 px-4 py-2 rounded hover:bg-gray-50 mr-2">Batal</a>
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Update

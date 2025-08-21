@@ -5,7 +5,7 @@
 @section('content')
     {{-- Tombol tambah --}}
     <div class="flex items-center justify-between mb-6">
-        <a href="{{ route('products.create') }}"
+        <a href="{{ route('admin.products.create') }}"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition">
             + Tambah Produk
         </a>
@@ -56,7 +56,7 @@
                         <td class="px-5 py-3">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                         <td class="px-5 py-3">{{ $product->preorder }} hari</td>
                         <td class="px-5 py-3 text-center space-x-2">
-                            <a href="{{ route('products.edit', $product->id) }}"
+                            <a href="{{ route('admin.products.edit', $product->id) }}"
                                 class="text-blue-600 hover:underline">Edit</a>
                             <!-- Tombol delete -->
                             <button data-modal-target="popup-modal-{{ $product->id }}"
@@ -65,7 +65,7 @@
                                 Hapus
                             </button>
                         </td>
-                        <x-modal.delete :id="'popup-modal-' . $product->id" :route="route('products.destroy', $product->id)"
+                        <x-modal.delete :id="'popup-modal-' . $product->id" :route="route('admin.products.destroy', $product->id)"
                             message="Yakin ingin menghapus produk '{{ $product->name }}'?" />
                     </tr>
                 @empty

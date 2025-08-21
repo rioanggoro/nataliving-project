@@ -51,14 +51,14 @@
                 <ul class="text-sm text-white/80 space-y-2">
                     <li>
                         <span class="block">WhatsApp:</span>
-                        <a href="https://wa.me/6281234567890" class="hover:text-white">
-                            +62 811 2669 123
+                        <a href="https://wa.me/62819870789" class="hover:text-white">
+                            +62 819 870 789
                         </a>
                     </li>
                     <li>
                         <span class="block">Email:</span>
                         <a href="mailto:support@nataliving.com" class="hover:text-white">
-                            admin@nataliving.co.id
+                            natalivingfurniture@gmail.com
                         </a>
                     </li>
                     <li>

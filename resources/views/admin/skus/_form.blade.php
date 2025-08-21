@@ -24,7 +24,7 @@
 </div>
 
 <div class="mb-4">
-    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Variant Name (e.g., Red, Large)</label>
+    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Varian</label>
     {{-- ✅ Kode 'value' ini sudah benar, tidak perlu diubah --}}
     <input type="text" name="name" id="name" value="{{ old('name', $sku->name ?? '') }}"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -39,7 +39,7 @@
 </div>
 
 <div class="flex items-center justify-end mt-4">
-    <a href="{{ route('skus.index') }}" class="text-gray-600 hover:text-gray-900 mr-4">Cancel</a>
+    <a href="{{ route('admin.skus.index') }}" class="text-gray-600 hover:text-gray-900 mr-4">Cancel</a>
     <button type="submit"
         class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow transition">
         Save SKU

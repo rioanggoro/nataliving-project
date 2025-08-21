@@ -7,7 +7,7 @@
 
     <div class="bg-white p-8 rounded-lg shadow-md">
 
-        <form action="{{ route('skus.update', $sku) }}" method="POST">
+        <form action="{{ route('admin.skus.update', $sku) }}" method="POST">
             @csrf
             @method('PUT')
             @include('admin.skus._form', ['sku' => $sku, 'products' => $products])

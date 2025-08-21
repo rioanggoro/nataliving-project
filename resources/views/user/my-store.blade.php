@@ -45,7 +45,7 @@
                     </div>
 
                     <div>
-                        <a href="https://wa.me/628112669123" target="_blank"
+                        <a href="https://wa.me/62819870789" target="_blank"
                             class="inline-block bg-nataliving-leaf hover:bg-nataliving-accent text-white font-semibold px-6 py-2 rounded-md transition">
                             Hubungi Kami via WhatsApp
                         </a>

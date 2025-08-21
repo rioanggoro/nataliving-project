@@ -6,7 +6,7 @@
 
     {{-- Tombol tambah --}}
     <div class="flex items-center justify-between mb-6">
-        <a href="{{ route('categories.create') }}"
+        <a href="{{ route('admin.categories.create') }}"
             class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition">
             + Tambah Kategori
         </a>
@@ -36,7 +36,7 @@
                         <td class="px-5 py-3">{{ $category->name }}</td>
                         <td class="px-5 py-3 text-center space-x-4">
                             {{-- Tombol Edit --}}
-                            <a href="{{ route('categories.edit', $category->id) }}"
+                            <a href="{{ route('admin.categories.edit', $category->id) }}"
                                 class="text-blue-600 hover:underline">Edit</a>
 
                             {{-- Tombol Hapus (Trigger Modal) --}}
@@ -46,7 +46,7 @@
                             </button>
 
                         </td>
-                        <x-modal.delete :id="'popup-modal-' . $category->id" :route="route('categories.destroy', $category->id)" :message="'Yakin ingin menghapus kategori \'' . $category->name . '\'?'" />
+                        <x-modal.delete :id="'popup-modal-' . $category->id" :route="route('admin.categories.destroy', $category->id)" :message="'Yakin ingin menghapus kategori \'' . $category->name . '\'?'" />
                     </tr>
                 @empty
                     <tr>

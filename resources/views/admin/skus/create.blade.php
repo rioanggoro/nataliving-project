@@ -8,7 +8,7 @@
 
     <div class="bg-white p-8 rounded-lg shadow-md">
         {{-- ✅ Action form diperbaiki ke route yang benar --}}
-        <form action="{{ route('skus.store') }}" method="POST">
+        <form action="{{ route('admin.skus.store') }}" method="POST">
             @csrf
             @include('admin.skus._form')
         </form>
