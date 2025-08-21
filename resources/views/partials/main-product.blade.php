@@ -143,7 +143,11 @@
                                 // 1. Siapkan semua bagian pesan
                                 $productName = '*' . $product->name . '*'; // Tambahkan bintang untuk teks tebal
                                 $productUrl = route('shop.show', $product->slug);
-                                $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$productUrl}\n\nApakah bisa dibantu?";
+                                $imageUrl = isset($product->images[0])
+                                    ? asset('storage/' . $product->images[0]->image_url)
+                                    : '';
+                                $fullUrl = $productUrl . ($imageUrl ? '/image_url?img=' . urlencode($imageUrl) : '');
+                                $message = "Halo,\n\nSaya ingin bertanya tentang produk {$productName}\n{$fullUrl}\n\nApakah bisa dibantu?";
                                 $whatsappUrl = 'https://wa.me/628112669123?text=' . urlencode($message);
                             @endphp
 
@@ -161,11 +165,7 @@
                                 <span class="text-sm md:text-base">Bagikan Produk</span>
                             </button>
                             <span id="copyStatus" class="ml-3 text-sm text-green-600 hidden">✅ Link disalin!</span>
-
-                        </div>
-
-
-                        <!-- Additional Info -->
+                        </div> <!-- Additional Info -->
                         <div class="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-200">
                             <div class="grid grid-cols-1 gap-3 md:gap-4">
                                 <div class="flex items-center gap-2 text-gray-600 text-sm md:text-base">

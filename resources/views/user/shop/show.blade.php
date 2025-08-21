@@ -2,6 +2,11 @@
 
 @section('title', $product->name . ' - Nataliving Furniture')
 
+@section('og:title', $product->name)
+@section('og:url', route('shop.show', $product->slug))
+@section('og:image', asset('storage/' . $product->mainImage->image_url))
+@section('og:description', Str::limit(strip_tags($product->description), 155))
+
 @section('content')
     <div class="bg-gray-50 min-h-screen pb-16">
         <!-- Breadcrumb -->

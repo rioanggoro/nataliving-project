@@ -52,15 +52,18 @@ class ProductController extends Controller
      * Tampilkan detail satu produk berdasarkan slug
      */ public function show($slug)
     {
-        $product = Product::with(['category', 'images'])->where('slug', $slug)->firstOrFail();
+        $product = Product::with(['category', 'images', 'mainImage', 'skus'])
+        ->where('slug', $slug)
+        ->firstOrFail();
 
-        $relatedProducts = Product::with('images')
-            ->where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->latest()
-            ->take(4)
-            ->get();
+    // Kode untuk produk terkait sudah benar
+    $relatedProducts = Product::with('images')
+        ->where('category_id', $product->category_id)
+        ->where('id', '!=', $product->id)
+        ->latest()
+        ->take(4)
+        ->get();
 
-        return view('user.shop.show', compact('product', 'relatedProducts'));
+    return view('user.shop.show', compact('product', 'relatedProducts'));
     }
 }
