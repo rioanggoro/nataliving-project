@@ -42,7 +42,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'preorder' => 'required|numeric|min:0',
             'images' => 'required',
-            'images.*' => 'image|mimes:jpg,jpeg,png|max:2048',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
 
@@ -90,7 +90,7 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'preorder' => 'required|numeric|min:0',
-            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         $product->update([

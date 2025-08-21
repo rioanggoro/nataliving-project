@@ -114,7 +114,7 @@
                         Ukuran gambar melebihi 2MB.
                     </div>
                     <div id="format-error" class="text-sm text-red-600 mt-2 hidden">
-                        Silakan upload gambar dengan format jpg, jpeg, atau png.
+                        Silakan upload gambar dengan format jpg, jpeg, webp,atau png.
                     </div>
                     <div id="max-image-warning" class="text-sm text-red-600 mt-2 hidden">
                         Maksimal 5 gambar yang dapat diunggah.

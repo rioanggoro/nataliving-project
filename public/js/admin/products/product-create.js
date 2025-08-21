@@ -28,7 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
         formatError.classList.add("hidden");
 
         files.forEach((file) => {
-            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/jpg",
+                "image/webp",
+            ];
 
             // Cek ukuran file
             if (file.size > 2 * 1024 * 1024) {

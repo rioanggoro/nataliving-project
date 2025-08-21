@@ -33,7 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 (f) =>
                     f.name === file.name && f.lastModified === file.lastModified
             );
-            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/jpg",
+                "image/webp",
+            ];
 
             if (!allowedTypes.includes(file.type)) {
                 hasInvalidFormat = true;
