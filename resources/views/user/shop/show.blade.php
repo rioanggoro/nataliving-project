@@ -54,8 +54,7 @@
                 <div class="p-6">
                     <!-- Description Tab -->
                     <div id="description" class="tab-content">
-                        {{-- Tambahkan 'break-words' untuk menangani teks panjang --}}
-                        <div class="prose text-gray-600 break-words">
+                        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                             {!! $product->description !!}
                         </div>
                     </div>
