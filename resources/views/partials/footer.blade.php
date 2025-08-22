@@ -24,10 +24,10 @@
             <!-- Kategori Populer -->
             @php
                 $popularCategories = [
-                    ['name' => 'Sofa', 'id' => 7],
-                    ['name' => 'Meja TV', 'id' => 9],
-                    ['name' => 'Lemari Pakaian', 'id' => 17],
-                    ['name' => 'Meja Makan', 'id' => 12],
+                    ['name' => 'Sofa', 'id' => 1],
+                    ['name' => 'Meja TV', 'id' => 3],
+                    ['name' => 'Lemari Pakaian', 'id' => 11],
+                    ['name' => 'Meja Makan', 'id' => 6],
                 ];
             @endphp
 

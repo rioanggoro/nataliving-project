@@ -19,21 +19,21 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     @php
                         $categories = [
-                            ['id' => 7, 'name' => 'Sofa', 'img' => 'sofa.webp'],
-                            ['id' => 8, 'name' => 'Kursi Tamu', 'img' => 'kursi-tamu.webp'],
-                            ['id' => 9, 'name' => 'Meja TV', 'img' => 'meja-tv.webp'],
-                            ['id' => 10, 'name' => 'Bufet TV', 'img' => 'bufet-tv.webp'],
-                            ['id' => 11, 'name' => 'Kursi Makan', 'img' => 'kursi-makan.png'],
-                            ['id' => 12, 'name' => 'Meja Makan', 'img' => 'meja-makan.webp'],
-                            ['id' => 13, 'name' => 'Tempat Tidur', 'img' => 'tempat-tidur.webp'],
-                            ['id' => 14, 'name' => 'Nakas', 'img' => 'nakas.webp'],
-                            ['id' => 15, 'name' => 'Meja Rias', 'img' => 'meja-rias.webp'],
-                            ['id' => 16, 'name' => 'Meja Belajar', 'img' => 'meja-belajar.webp'],
-                            ['id' => 17, 'name' => 'Lemari Pakaian', 'img' => 'lemari-pakaian.webp'],
-                            ['id' => 18, 'name' => 'Meja Coffee Table', 'img' => 'meja-coffee.webp'],
-                            ['id' => 19, 'name' => 'Meja Marmer', 'img' => 'meja-marmer.png'],
-                            ['id' => 20, 'name' => 'Outdoor Furniture', 'img' => 'outdoor.png'],
-                            ['id' => 21, 'name' => 'Pintu Jati', 'img' => 'pintu-jati.png'],
+                            ['id' => 1, 'name' => 'Sofa', 'img' => 'sofa.webp'],
+                            ['id' => 2, 'name' => 'Kursi Tamu', 'img' => 'kursi-tamu.webp'],
+                            ['id' => 3, 'name' => 'Meja TV', 'img' => 'meja-tv.webp'],
+                            ['id' => 4, 'name' => 'Bufet TV', 'img' => 'bufet-tv.webp'],
+                            ['id' => 5, 'name' => 'Kursi Makan', 'img' => 'kursi-makan.png'],
+                            ['id' => 6, 'name' => 'Meja Makan', 'img' => 'meja-makan.webp'],
+                            ['id' => 7, 'name' => 'Tempat Tidur', 'img' => 'tempat-tidur.webp'],
+                            ['id' => 8, 'name' => 'Nakas', 'img' => 'nakas.webp'],
+                            ['id' => 9, 'name' => 'Meja Rias', 'img' => 'meja-rias.webp'],
+                            ['id' => 10, 'name' => 'Meja Belajar', 'img' => 'meja-belajar.webp'],
+                            ['id' => 11, 'name' => 'Lemari Pakaian', 'img' => 'lemari-pakaian.webp'],
+                            ['id' => 12, 'name' => 'Meja Coffee Table', 'img' => 'meja-coffee.webp'],
+                            ['id' => 13, 'name' => 'Meja Marmer', 'img' => 'meja-marmer.png'],
+                            ['id' => 14, 'name' => 'Outdoor Furniture', 'img' => 'outdoor.png'],
+                            ['id' => 15, 'name' => 'Pintu Jati', 'img' => 'pintu-jati.png'],
                         ];
                     @endphp
                     @foreach ($categories as $cat)
